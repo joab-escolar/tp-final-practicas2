@@ -33,6 +33,6 @@ py -m venv venv
 
 4. Instalar librerias
 ```
-
+pip install -r requirements.txt
 ```
 
