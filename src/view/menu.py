@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'login.ui'
+## Form generated from reading UI file 'menu.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.8.0
 ##
@@ -15,9 +15,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QLabel, QLineEdit, QMainWindow,
-    QMenuBar, QPushButton, QSizePolicy, QStatusBar,
-    QWidget)
+from PySide6.QtWidgets import (QApplication, QLabel, QMainWindow, QMenuBar,
+    QSizePolicy, QStatusBar, QWidget)
 
 class Ui_LoginWindow(object):
     def setupUi(self, LoginWindow):
@@ -32,25 +31,6 @@ class Ui_LoginWindow(object):
         font = QFont()
         font.setPointSize(15)
         self.label.setFont(font)
-        self.input_username = QLineEdit(self.centralwidget)
-        self.input_username.setObjectName(u"input_username")
-        self.input_username.setGeometry(QRect(310, 150, 171, 31))
-        self.label_2 = QLabel(self.centralwidget)
-        self.label_2.setObjectName(u"label_2")
-        self.label_2.setGeometry(QRect(310, 130, 49, 16))
-        self.btn_ingresar = QPushButton(self.centralwidget)
-        self.btn_ingresar.setObjectName(u"btn_ingresar")
-        self.btn_ingresar.setGeometry(QRect(310, 330, 171, 31))
-        self.input_password = QLineEdit(self.centralwidget)
-        self.input_password.setObjectName(u"input_password")
-        self.input_password.setGeometry(QRect(310, 220, 171, 31))
-        self.label_3 = QLabel(self.centralwidget)
-        self.label_3.setObjectName(u"label_3")
-        self.label_3.setGeometry(QRect(310, 200, 61, 16))
-        self.lbl_error = QLabel(self.centralwidget)
-        self.lbl_error.setObjectName(u"lbl_error")
-        self.lbl_error.setGeometry(QRect(310, 280, 331, 31))
-        self.lbl_error.setStyleSheet(u"color: rgb(255, 0, 0);")
         LoginWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(LoginWindow)
         self.menubar.setObjectName(u"menubar")
@@ -67,10 +47,6 @@ class Ui_LoginWindow(object):
 
     def retranslateUi(self, LoginWindow):
         LoginWindow.setWindowTitle(QCoreApplication.translate("LoginWindow", u"BANCO", None))
-        self.label.setText(QCoreApplication.translate("LoginWindow", u"LOGIN", None))
-        self.label_2.setText(QCoreApplication.translate("LoginWindow", u"Usuario", None))
-        self.btn_ingresar.setText(QCoreApplication.translate("LoginWindow", u"Ingresar", None))
-        self.label_3.setText(QCoreApplication.translate("LoginWindow", u"Contrase\u00f1a", None))
-        self.lbl_error.setText("")
+        self.label.setText(QCoreApplication.translate("LoginWindow", u"MENU", None))
     # retranslateUi
 

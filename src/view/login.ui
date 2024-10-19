@@ -32,7 +32,7 @@
      <string>LOGIN</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QLineEdit" name="input_username">
     <property name="geometry">
      <rect>
       <x>310</x>
@@ -55,7 +55,7 @@
      <string>Usuario</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="btn_ingresar">
     <property name="geometry">
      <rect>
       <x>310</x>
@@ -68,7 +68,7 @@
      <string>Ingresar</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_2">
+   <widget class="QLineEdit" name="input_password">
     <property name="geometry">
      <rect>
       <x>310</x>
