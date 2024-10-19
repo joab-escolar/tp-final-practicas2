@@ -11,10 +11,10 @@ class UsersDB:
                 id INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
                 username TEXT UNIQUE NOT NULL CHECK(length(username) <= 20),
                 password TEXT NOT NULL CHECK(length(password) <= 20),
-                role INTEGER,
+                role_id INTEGER,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                 last_connection TIMESTAMP,
-                FOREIGN KEY (role) REFERENCES roles(id)
+                FOREIGN KEY (role_id) REFERENCES roles(id)
             );
         ''')
         printGreen("RUN SCHEMA USER")
@@ -31,7 +31,7 @@ class UsersDB:
 
         if len(totalUsers) == 0:
             cursor.execute('''
-                INSERT INTO users (username, password, role,last_connection)
+                INSERT INTO users (username, password, role_id,last_connection)
                 VALUES 
                     ('admin', 'admin', 1, '2023-10-10 11:00:00'),
                     ('guest', 'guest', 2, '2023-10-10 11:00:00');

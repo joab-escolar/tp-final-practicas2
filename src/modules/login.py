@@ -7,8 +7,9 @@ class Login():
             SELECT * FROM users WHERE username = '{username}' AND password = '{password}';
         ''')
         if len(user) != 0:
-            print(user)
+            # return user with role name
+            return sql(f"SELECT users.*, roles.name FROM users JOIN roles ON users.role_id = roles.id WHERE users.id = {list(user[0])[0]};")
         else:
-            print('usuario no encontrado')   
+            return False  
             
 
