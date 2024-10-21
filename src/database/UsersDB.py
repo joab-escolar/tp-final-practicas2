@@ -1,5 +1,6 @@
 import sqlite3
 from utils.print import printGreen
+from utils.dateFunctions import getCurrentTime
 
 class UsersDB:
     def schema(self):
@@ -40,5 +41,23 @@ class UsersDB:
 
         db.commit()
         db.close()
+
+    def store(self, username, password, role_id):
+        db = sqlite3.connect('banco.db')
+        cursor = db.cursor()
+
+        query = '''
+            INSERT INTO users (username, password, role_id,last_connection)
+            VALUES (?, ?, ?, ?);
+        '''
+
+        cursor.execute(query, (username, password, role_id, getCurrentTime()))
+        
+        newUser = cursor.fetchall()
+
+        db.commit()
+        db.close()
+
+        return newUser
 
 

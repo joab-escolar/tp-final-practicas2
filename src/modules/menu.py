@@ -1,14 +1,14 @@
 """MAIN"""
 import sys
-from PySide6.QtWidgets import QMainWindow
+from PySide6.QtWidgets import QMainWindow, QStackedWidget
 from view.menu import Ui_menuWindow
-from utils.sqlRaw import sql
 from modules.user import UsersWindow
 
 
 class MenuWindow(QMainWindow,Ui_menuWindow):
     def __init__(self, logedUser):
         super().__init__()
+        self.logedUser = logedUser
         self.user = list(logedUser[0])
         self.setupUi(self)
         self.handlerMenu()
@@ -30,9 +30,8 @@ class MenuWindow(QMainWindow,Ui_menuWindow):
         # self.btn_logout.clicked.connect()
     
     def users_menu(self):
-        print("click")
         self.close()
-        self.users = UsersWindow(self.user)
+        self.users = UsersWindow(self.logedUser, self)
         self.users.show()  
 
 

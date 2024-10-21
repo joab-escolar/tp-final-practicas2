@@ -15,9 +15,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QLabel, QListView, QMainWindow,
-    QMenuBar, QPushButton, QSizePolicy, QStatusBar,
-    QWidget)
+from PySide6.QtWidgets import (QApplication, QLabel, QListWidget, QListWidgetItem,
+    QMainWindow, QMenuBar, QPushButton, QSizePolicy,
+    QStatusBar, QWidget)
 
 class Ui_usersWindow(object):
     def setupUi(self, usersWindow):
@@ -42,15 +42,15 @@ class Ui_usersWindow(object):
         self.btn_back = QPushButton(self.centralwidget)
         self.btn_back.setObjectName(u"btn_back")
         self.btn_back.setGeometry(QRect(680, 10, 111, 41))
-        self.list_users = QListView(self.centralwidget)
-        self.list_users.setObjectName(u"list_users")
-        self.list_users.setGeometry(QRect(30, 120, 501, 401))
         self.btn_edit = QPushButton(self.centralwidget)
         self.btn_edit.setObjectName(u"btn_edit")
         self.btn_edit.setGeometry(QRect(120, 70, 81, 41))
         self.btn_delete = QPushButton(self.centralwidget)
         self.btn_delete.setObjectName(u"btn_delete")
         self.btn_delete.setGeometry(QRect(210, 70, 81, 41))
+        self.list_users = QListWidget(self.centralwidget)
+        self.list_users.setObjectName(u"list_users")
+        self.list_users.setGeometry(QRect(30, 130, 491, 401))
         usersWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(usersWindow)
         self.menubar.setObjectName(u"menubar")
