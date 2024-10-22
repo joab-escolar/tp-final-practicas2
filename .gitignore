@@ -1,6 +1,6 @@
 /venv/
 banco.db
-/database/__pycache__
-/modules/__pycache__
-/utils/__pycache__
-/view/__pycache__
+/database/__pycache__/
+/modules/__pycache__/
+/utils/__pycache__/
+/view/__pycache__/
