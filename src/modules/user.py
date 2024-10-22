@@ -38,7 +38,6 @@ class UsersWindow(QMainWindow,Ui_usersWindow):
         for item in users:
             user = list(item)
             role =  list(sql(f"SELECT * FROM roles WHERE id = {user[3]}")[0])
-            print(user)
             row_position = self.table_user.rowCount()
             self.table_user.insertRow(row_position)
             self.table_user.setItem(row_position, 0, QTableWidgetItem(f"{user[0]}"))

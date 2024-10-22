@@ -44,22 +44,51 @@ class ClientsDB:
         db.commit()
         db.close()
 
-    # def store(self, username, password, role_id):
-    #     db = sqlite3.connect('banco.db')
-    #     cursor = db.cursor()
+    def store(self, name, lastname, dni, birthdate, direction, phone, status):
+        db = sqlite3.connect('banco.db')
+        cursor = db.cursor()
 
-    #     query = '''
-    #         INSERT INTO users (username, password, role_id,last_connection)
-    #         VALUES (?, ?, ?, ?);
-    #     '''
+        query = '''
+            INSERT INTO clients (name, lastname, dni, birthdate, direction, phone, status)
+            VALUES (?, ?, ?, ?, ?, ?, ?);
+        '''
 
-    #     cursor.execute(query, (username, password, role_id, getCurrentTime()))
+        cursor.execute(query, (name, lastname, dni, birthdate, direction, phone, status))
         
-    #     newUser = cursor.fetchall()
+        newClient = cursor.fetchall()
 
-    #     db.commit()
-    #     db.close()
+        db.commit()
+        db.close()
 
-    #     return newUser
+        return newClient
+
+    def update(self, name, lastname, dni, birthdate, direction, phone, status, id):
+        db = sqlite3.connect('banco.db')
+        cursor = db.cursor()
+
+        query = f"UPDATE clients SET name = '{name}', lastname = '{lastname}', dni = {dni}, birthdate = '{birthdate}', direction = '{direction}', phone = '{phone}', status = {status} WHERE id = {id};"
+
+        cursor.execute(query)
+        
+        updateClient = cursor.fetchall()
+
+        db.commit()
+        db.close()
+
+        return updateClient
+
+    def delete(self, id):
+        db = sqlite3.connect('banco.db')
+        cursor = db.cursor()
+
+
+        cursor.execute(f"UPDATE clients SET status = 0 WHERE id = {id}")
+        
+        updateClient = cursor.fetchall()
+
+        db.commit()
+        db.close()
+
+        return updateClient
 
 

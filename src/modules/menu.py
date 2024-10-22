@@ -3,6 +3,7 @@ import sys
 from PySide6.QtWidgets import QMainWindow, QStackedWidget
 from view.menu import Ui_menuWindow
 from modules.user import UsersWindow
+from modules.client import ClientWindow
 
 
 class MenuWindow(QMainWindow,Ui_menuWindow):
@@ -24,7 +25,7 @@ class MenuWindow(QMainWindow,Ui_menuWindow):
 
     def connection(self):
         self.btn_users.clicked.connect(self.users_menu)
-        # self.btn_clients.clicked.connect()
+        self.btn_clients.clicked.connect(self.clients_menu)
         # self.btn_account.clicked.connect()
         # self.btn_transactions.clicked.connect()
         # self.btn_logout.clicked.connect()
@@ -33,6 +34,11 @@ class MenuWindow(QMainWindow,Ui_menuWindow):
         self.close()
         self.users = UsersWindow(self.logedUser, self)
         self.users.show()  
+
+    def clients_menu(self):
+        self.close()
+        self.client = ClientWindow(self.logedUser, self)
+        self.client.show()  
 
 
     
