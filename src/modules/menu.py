@@ -30,7 +30,7 @@ class MenuWindow(QMainWindow,Ui_menuWindow):
         self.btn_clients.clicked.connect(self.clients_menu)
         self.btn_account.clicked.connect(self.account_menu)
         self.btn_transactions.clicked.connect(self.transacction_menu)
-        # self.btn_logout.clicked.connect()
+        self.btn_logout.clicked.connect(self.quit)
     
     def users_menu(self):
         self.close()
@@ -51,6 +51,9 @@ class MenuWindow(QMainWindow,Ui_menuWindow):
         self.close()
         self.account = TransacctionWindow(self.logedUser, self)
         self.account.show()  
+
+    def quit(self):
+        sys.exit()
 
 
     

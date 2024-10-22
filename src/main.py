@@ -1,6 +1,6 @@
 """MAIN"""
 import sys
-from PySide6.QtWidgets import QMainWindow, QApplication, QMessageBox
+from PySide6.QtWidgets import QMainWindow, QApplication, QMessageBox, QLineEdit
 from database.migrations import DataBase
 from view.login import Ui_LoginWindow
 from modules.login import Login
@@ -14,7 +14,12 @@ class LoginWindow(QMainWindow,Ui_LoginWindow):
 
     def handlerLogin(self):
         self.startDB()
+        self.hidden()
         self.connection()
+    
+    def hidden(self):
+        self.input_password.setEchoMode(QLineEdit.Password)
+        self.input_password.setPlaceholderText("Ingresa tu contraseña")
 
     def connection(self):
         self.btn_ingresar.clicked.connect(self.login)
@@ -23,9 +28,9 @@ class LoginWindow(QMainWindow,Ui_LoginWindow):
         username = self.input_username.text()
         password = self.input_password.text()
 
-        #debug
-        username = 'admin'
-        password = 'admin'
+        # #debug
+        # username = 'admin'
+        # password = 'admin'
 
         login = Login()
         logedUser = login.login(username, password)
