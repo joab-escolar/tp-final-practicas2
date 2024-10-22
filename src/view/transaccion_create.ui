@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>cuentasWindow</class>
- <widget class="QMainWindow" name="cuentasWindow">
+ <class>transaccionAltaWindow</class>
+ <widget class="QMainWindow" name="transaccionAltaWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -41,7 +41,7 @@
      </font>
     </property>
     <property name="text">
-     <string>CUENTAS-</string>
+     <string>TRANSACCION-</string>
     </property>
    </widget>
    <widget class="QLabel" name="lbl_show_user">
@@ -49,7 +49,7 @@
      <rect>
       <x>130</x>
       <y>10</y>
-      <width>631</width>
+      <width>571</width>
       <height>31</height>
      </rect>
     </property>
@@ -62,24 +62,11 @@
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="btn_create">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>70</y>
-      <width>81</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Nuevo</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="btn_back">
     <property name="geometry">
      <rect>
-      <x>860</x>
-      <y>10</y>
+      <x>870</x>
+      <y>0</y>
       <width>111</width>
       <height>41</height>
      </rect>
@@ -88,63 +75,109 @@
      <string>Atras</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btn_edit">
+   <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>70</y>
-      <width>81</width>
-      <height>41</height>
+      <x>320</x>
+      <y>260</y>
+      <width>111</width>
+      <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>Editar</string>
+     <string>Cuenta Egreso</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btn_delete">
+   <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>70</y>
-      <width>81</width>
-      <height>41</height>
+      <x>500</x>
+      <y>340</y>
+      <width>111</width>
+      <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>Eliminar</string>
+     <string>Monto</string>
     </property>
    </widget>
-   <widget class="QListWidget" name="list_estadisticas">
+   <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>690</x>
-      <y>130</y>
-      <width>291</width>
-      <height>601</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTableWidget" name="table_accounts">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>130</y>
-      <width>651</width>
-      <height>601</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btn_history">
-    <property name="geometry">
-     <rect>
-      <x>300</x>
-      <y>70</y>
-      <width>81</width>
-      <height>41</height>
+      <x>320</x>
+      <y>340</y>
+      <width>91</width>
+      <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>Historial</string>
+     <string>Fecha Impactada</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>500</x>
+      <y>260</y>
+      <width>91</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Cuenta Ingreso</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btn_create">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>440</y>
+      <width>341</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Crear</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="input_monto">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>360</y>
+      <width>171</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="slect_Egreso">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>280</y>
+      <width>171</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="slect_Ingreso">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>280</y>
+      <width>171</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QDateTimeEdit" name="input_inpact_date">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>360</y>
+      <width>171</width>
+      <height>31</height>
+     </rect>
     </property>
    </widget>
   </widget>

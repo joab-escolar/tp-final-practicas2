@@ -4,6 +4,7 @@ from PySide6.QtWidgets import QMainWindow, QTableWidget, QTableWidgetItem, QAbst
 from PySide6.QtCore import QDateTime 
 from view.cuentas import Ui_cuentasWindow
 from view.cuenta_create import Ui_CuentasIterableWindow
+from view.cuentas_info import Ui_cuentasInfoWindow
 from utils.sqlRaw import sql
 from database.accountsDB import AccountsDB
 
@@ -55,6 +56,7 @@ class AccountWindow(QMainWindow,Ui_cuentasWindow):
         self.btn_create.clicked.connect(self.showCreate)
         self.btn_edit.clicked.connect(self.showEdit)
         self.btn_delete.clicked.connect(self.delete)
+        self.btn_history.clicked.connect(self.history)
 
     def goBack(self):
         self.close()
@@ -82,6 +84,15 @@ class AccountWindow(QMainWindow,Ui_cuentasWindow):
         else:
             print("error")
         self.showTable()
+
+    def history(self):
+        selectedRow = self.table_accounts.currentRow()
+        if selectedRow >= 0:
+            self.close()
+            self.accountEdit = HistoryWindow(self.logedUser, self, self.table_accounts.item(selectedRow,0).text())
+            self.accountEdit.show()
+        else:
+            print("error")
 
 # CREATE USER WINDOW
 class AccountCreateWindow(QMainWindow,Ui_CuentasIterableWindow):
@@ -223,3 +234,48 @@ class AccountEditWindow(QMainWindow,Ui_CuentasIterableWindow):
 
 
         
+class HistoryWindow(QMainWindow,Ui_cuentasInfoWindow):
+    def __init__(self, logedUser, fatherInstance, ID):
+        super().__init__()
+        self.fatherInstance = fatherInstance
+        self.logedUser = logedUser
+        self.user = list(logedUser[0])
+        self.updateID = int(ID)
+        self.setupUi(self)
+        self.handlerCuentas()
+
+    def handlerCuentas(self):
+        self.setUser()
+        self.loadTable()
+        self.showTable()
+        self.connection()
+        
+    def setUser(self):
+        self.lbl_show_user.setText(f"({self.user[6]}) {self.user[2]}")
+    
+    
+    def connection(self):
+        self.btn_back.clicked.connect(self.goBack)
+
+    def goBack(self):
+        self.close()
+        self.fatherInstance.show()
+
+    def loadTable(self):
+        self.table_more_info.setColumnCount(5)
+        self.table_more_info.setHorizontalHeaderLabels(["ID" , "transaccion", "balance", "tipo", "Creacion"])
+        self.table_more_info.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
+        self.table_more_info.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
+
+    def showTable(self):
+        self.table_more_info.setRowCount(0)
+        accounts = sql(f"SELECT * FROM histories WHERE account_id = {self.updateID};")
+        for item in accounts:
+            account = list(item)
+            row_position = self.table_more_info.rowCount()
+            self.table_more_info.insertRow(row_position)
+            self.table_more_info.setItem(row_position, 0, QTableWidgetItem(f"{account[0]}"))
+            self.table_more_info.setItem(row_position, 1, QTableWidgetItem(f"{account[1]}"))
+            self.table_more_info.setItem(row_position, 2, QTableWidgetItem(f"{account[3]}"))
+            self.table_more_info.setItem(row_position, 3, QTableWidgetItem(account[4]))
+            self.table_more_info.setItem(row_position, 4, QTableWidgetItem(account[5]))

@@ -1,6 +1,7 @@
 import sqlite3
 from utils.print import printGreen
 from utils.dateFunctions import getCurrentTime
+from utils.sqlRaw import sql
 
 class HistoryDB:
     def schema(self):
@@ -43,22 +44,32 @@ class HistoryDB:
         db.commit()
         db.close()
 
-    # def store(self, username, password, role_id):
-    #     db = sqlite3.connect('banco.db')
-    #     cursor = db.cursor()
+    def store(self, account_id, transacction_id, balance, type):
+        db = sqlite3.connect('banco.db')
+        cursor = db.cursor()
 
-    #     query = '''
-    #         INSERT INTO users (username, password, role_id,last_connection)
-    #         VALUES (?, ?, ?, ?);
-    #     '''
+        query = '''
+            INSERT INTO histories (account_id, transacction_id, balance, type)
+            VALUES (?, ?, ?, ?);
+        '''
 
-    #     cursor.execute(query, (username, password, role_id, getCurrentTime()))
+        cursor.execute(query, (account_id, transacction_id, balance, type))
         
-    #     newUser = cursor.fetchall()
+        created = cursor.fetchall()
 
-    #     db.commit()
-    #     db.close()
+        account = list(sql(f"SELECT * FROM accounts WHERE id = {account_id};")[0])
+        newBalance = 0 
+        if type == "ENTRADA":
+            newBalance = float(account[5]) + float(balance)
+        else:
+            newBalance = float(account[5]) - float(balance)
 
-    #     return newUser
+        cursor.execute(f"UPDATE accounts SET balance = {newBalance} WHERE id = {account_id}")
+
+
+        db.commit()
+        db.close()
+
+        return created
 
 

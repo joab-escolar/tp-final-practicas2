@@ -5,6 +5,7 @@ from view.menu import Ui_menuWindow
 from modules.user import UsersWindow
 from modules.client import ClientWindow
 from modules.account import AccountWindow
+from modules.transacction import TransacctionWindow
 
 
 class MenuWindow(QMainWindow,Ui_menuWindow):
@@ -28,7 +29,7 @@ class MenuWindow(QMainWindow,Ui_menuWindow):
         self.btn_users.clicked.connect(self.users_menu)
         self.btn_clients.clicked.connect(self.clients_menu)
         self.btn_account.clicked.connect(self.account_menu)
-        # self.btn_transactions.clicked.connect()
+        self.btn_transactions.clicked.connect(self.transacction_menu)
         # self.btn_logout.clicked.connect()
     
     def users_menu(self):
@@ -44,6 +45,11 @@ class MenuWindow(QMainWindow,Ui_menuWindow):
     def account_menu(self):
         self.close()
         self.account = AccountWindow(self.logedUser, self)
+        self.account.show()  
+
+    def transacction_menu(self):
+        self.close()
+        self.account = TransacctionWindow(self.logedUser, self)
         self.account.show()  
 
 

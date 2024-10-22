@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>cuentasWindow</class>
- <widget class="QMainWindow" name="cuentasWindow">
+ <class>cuentasInfoWindow</class>
+ <widget class="QMainWindow" name="cuentasInfoWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -31,7 +31,7 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>131</width>
+      <width>141</width>
       <height>31</height>
      </rect>
     </property>
@@ -41,7 +41,7 @@
      </font>
     </property>
     <property name="text">
-     <string>CUENTAS-</string>
+     <string>CUENTAS-INFO</string>
     </property>
    </widget>
    <widget class="QLabel" name="lbl_show_user">
@@ -49,7 +49,7 @@
      <rect>
       <x>130</x>
       <y>10</y>
-      <width>631</width>
+      <width>451</width>
       <height>31</height>
      </rect>
     </property>
@@ -62,23 +62,10 @@
      <string/>
     </property>
    </widget>
-   <widget class="QPushButton" name="btn_create">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>70</y>
-      <width>81</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Nuevo</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="btn_back">
     <property name="geometry">
      <rect>
-      <x>860</x>
+      <x>880</x>
       <y>10</y>
       <width>111</width>
       <height>41</height>
@@ -88,63 +75,14 @@
      <string>Atras</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btn_edit">
+   <widget class="QTableWidget" name="table_more_info">
     <property name="geometry">
      <rect>
-      <x>120</x>
+      <x>10</x>
       <y>70</y>
-      <width>81</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Editar</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btn_delete">
-    <property name="geometry">
-     <rect>
-      <x>210</x>
-      <y>70</y>
-      <width>81</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Eliminar</string>
-    </property>
-   </widget>
-   <widget class="QListWidget" name="list_estadisticas">
-    <property name="geometry">
-     <rect>
-      <x>690</x>
-      <y>130</y>
-      <width>291</width>
-      <height>601</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTableWidget" name="table_accounts">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>130</y>
       <width>651</width>
       <height>601</height>
      </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btn_history">
-    <property name="geometry">
-     <rect>
-      <x>300</x>
-      <y>70</y>
-      <width>81</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Historial</string>
     </property>
    </widget>
   </widget>

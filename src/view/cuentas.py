@@ -57,6 +57,9 @@ class Ui_cuentasWindow(object):
         self.table_accounts = QTableWidget(self.centralwidget)
         self.table_accounts.setObjectName(u"table_accounts")
         self.table_accounts.setGeometry(QRect(30, 130, 651, 601))
+        self.btn_history = QPushButton(self.centralwidget)
+        self.btn_history.setObjectName(u"btn_history")
+        self.btn_history.setGeometry(QRect(300, 70, 81, 41))
         cuentasWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(cuentasWindow)
         self.menubar.setObjectName(u"menubar")
@@ -79,5 +82,6 @@ class Ui_cuentasWindow(object):
         self.btn_back.setText(QCoreApplication.translate("cuentasWindow", u"Atras", None))
         self.btn_edit.setText(QCoreApplication.translate("cuentasWindow", u"Editar", None))
         self.btn_delete.setText(QCoreApplication.translate("cuentasWindow", u"Eliminar", None))
+        self.btn_history.setText(QCoreApplication.translate("cuentasWindow", u"Historial", None))
     # retranslateUi
 

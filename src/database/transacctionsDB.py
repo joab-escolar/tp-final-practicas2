@@ -41,22 +41,22 @@ class TransacctionsDB:
         db.commit()
         db.close()
 
-    # def store(self, username, password, role_id):
-    #     db = sqlite3.connect('banco.db')
-    #     cursor = db.cursor()
+    def store(self, impact_date, origin_account_id, destination_account_id, balance):
+        db = sqlite3.connect('banco.db')
+        cursor = db.cursor()
 
-    #     query = '''
-    #         INSERT INTO users (username, password, role_id,last_connection)
-    #         VALUES (?, ?, ?, ?);
-    #     '''
+        query = '''
+            INSERT INTO transacctions (impact_date, origin_account_id, destination_account_id, balance)
+            VALUES (?, ?, ?, ?);
+        '''
 
-    #     cursor.execute(query, (username, password, role_id, getCurrentTime()))
+        cursor.execute(query, (impact_date, origin_account_id, destination_account_id, balance))
         
-    #     newUser = cursor.fetchall()
+        created = cursor.fetchall()
 
-    #     db.commit()
-    #     db.close()
+        db.commit()
+        db.close()
 
-    #     return newUser
+        return created
 
 
