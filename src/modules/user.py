@@ -1,6 +1,6 @@
 """MAIN"""
 import sys
-from PySide6.QtWidgets import QMainWindow, QTableWidget, QTableWidgetItem, QAbstractItemView
+from PySide6.QtWidgets import QMainWindow, QTableWidget, QTableWidgetItem, QAbstractItemView, QMessageBox
 from view.user import Ui_usersWindow
 from view.user_create import Ui_usersIterableWindow
 # from view.users import Ui_usersIterateWindow
@@ -109,17 +109,27 @@ class UsersCreateWindow(QMainWindow,Ui_usersIterableWindow):
         self.fatherInstance.show()
 
     def store(self):
-        username = str(self.input_username.text())
-        password = str(self.input_password.text())
+        username = str(self.input_username.text()).strip()
+        password = str(self.input_password.text()).strip()
         role = self.slect_roles.currentIndex()
         role_id = self.slect_roles.itemData(role)
+    
+        if not username:
+            QMessageBox.warning(self, "Error", "El campo de nombre de usuario está vacío.")
+            return
+
+        if not password:
+                QMessageBox.warning(self, "Error", "El campo de contraseña está vacío.")
+                return
+    
+        if role == -1:
+                QMessageBox.warning(self, "Error", "No se ha seleccionado ningún rol.")
+                return
 
         newUser = UsersDB().store(username, password, role_id)
 
         self.fatherInstance.showTable()
         self.goBack()
-
-
 
 class UsersEditWindow(QMainWindow,Ui_usersIterableWindow):
     def __init__(self, logedUser, fatherInstance, userID):
@@ -167,6 +177,10 @@ class UsersEditWindow(QMainWindow,Ui_usersIterableWindow):
         password = str(self.input_password.text())
         role = self.slect_roles.currentIndex()
         role_id = self.slect_roles.itemData(role)
+    
+        if not username:
+            QMessageBox.warning(self, "Error, Nombre vacio.")
+            return 
         
         UsersDB().update(username, password, role_id, self.udateUserID)
 

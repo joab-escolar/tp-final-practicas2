@@ -1,6 +1,6 @@
 """MAIN"""
 import sys
-from PySide6.QtWidgets import QMainWindow, QApplication
+from PySide6.QtWidgets import QMainWindow, QApplication, QMessageBox
 from database.migrations import DataBase
 from view.login import Ui_LoginWindow
 from modules.login import Login
@@ -15,10 +15,6 @@ class LoginWindow(QMainWindow,Ui_LoginWindow):
     def handlerLogin(self):
         self.startDB()
         self.connection()
-
-    def startDB(self):
-        db = DataBase()
-        db.migrate()
 
     def connection(self):
         self.btn_ingresar.clicked.connect(self.login)
@@ -43,6 +39,10 @@ class LoginWindow(QMainWindow,Ui_LoginWindow):
             self.menu.show()
         else:
             self.lbl_error.setText("credenciales incorrectas!")
+
+    def startDB(self):
+        db = DataBase()
+        db.migrate()
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
