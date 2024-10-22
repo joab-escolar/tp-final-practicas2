@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>usersIterableWindow</class>
- <widget class="QMainWindow" name="usersIterableWindow">
+ <class>usersIterateWindow</class>
+ <widget class="QMainWindow" name="usersIterateWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -9,18 +9,6 @@
     <width>1000</width>
     <height>800</height>
    </rect>
-  </property>
-  <property name="minimumSize">
-   <size>
-    <width>1000</width>
-    <height>800</height>
-   </size>
-  </property>
-  <property name="maximumSize">
-   <size>
-    <width>1000</width>
-    <height>800</height>
-   </size>
   </property>
   <property name="windowTitle">
    <string>BANCO</string>
@@ -49,7 +37,7 @@
      <rect>
       <x>130</x>
       <y>10</y>
-      <width>581</width>
+      <width>451</width>
       <height>31</height>
      </rect>
     </property>
@@ -65,7 +53,7 @@
    <widget class="QPushButton" name="btn_back">
     <property name="geometry">
      <rect>
-      <x>870</x>
+      <x>860</x>
       <y>10</y>
       <width>111</width>
       <height>41</height>
@@ -79,8 +67,8 @@
     <property name="geometry">
      <rect>
       <x>400</x>
-      <y>230</y>
-      <width>171</width>
+      <y>210</y>
+      <width>181</width>
       <height>31</height>
      </rect>
     </property>
@@ -89,8 +77,8 @@
     <property name="geometry">
      <rect>
       <x>400</x>
-      <y>350</y>
-      <width>171</width>
+      <y>330</y>
+      <width>181</width>
       <height>31</height>
      </rect>
     </property>
@@ -99,8 +87,8 @@
     <property name="geometry">
      <rect>
       <x>400</x>
-      <y>290</y>
-      <width>171</width>
+      <y>270</y>
+      <width>181</width>
       <height>31</height>
      </rect>
     </property>
@@ -109,7 +97,7 @@
     <property name="geometry">
      <rect>
       <x>400</x>
-      <y>410</y>
+      <y>390</y>
       <width>171</width>
       <height>31</height>
      </rect>
@@ -122,7 +110,7 @@
     <property name="geometry">
      <rect>
       <x>400</x>
-      <y>210</y>
+      <y>190</y>
       <width>111</width>
       <height>16</height>
      </rect>
@@ -135,7 +123,7 @@
     <property name="geometry">
      <rect>
       <x>400</x>
-      <y>270</y>
+      <y>250</y>
       <width>111</width>
       <height>16</height>
      </rect>
@@ -148,7 +136,7 @@
     <property name="geometry">
      <rect>
       <x>400</x>
-      <y>330</y>
+      <y>310</y>
       <width>111</width>
       <height>16</height>
      </rect>

@@ -59,5 +59,34 @@ class UsersDB:
         db.close()
 
         return newUser
+    
+    def update(self, username, password, role_id, id):
+        db = sqlite3.connect('banco.db')
+        cursor = db.cursor()
+
+        if len(password) > 0:
+            cursor.execute(f"UPDATE users SET username = '{username}', password = '{password}', role_id = {role_id} WHERE id = {id};")
+        else:
+            cursor.execute(f"UPDATE users SET username = '{username}', role_id = {role_id} WHERE id = {id};")
+        
+        updatedUser = cursor.fetchall()
+
+        db.commit()
+        db.close()
+
+        return updatedUser
+
+    def delete(self, id):
+        db = sqlite3.connect('banco.db')
+        cursor = db.cursor()
+
+        cursor.execute(f"DELETE FROM users WHERE id = {id};")
+
+        deletedUser = cursor.fetchall()
+
+        db.commit()
+        db.close()
+
+        return deletedUser
 
 
