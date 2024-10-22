@@ -1,6 +1,6 @@
 """MAIN"""
 import sys
-from PySide6.QtWidgets import QMainWindow, QTableWidget, QTableWidgetItem, QAbstractItemView
+from PySide6.QtWidgets import QMainWindow, QTableWidget, QTableWidgetItem, QAbstractItemView, QMessageBox
 from PySide6.QtCore import QDateTime 
 from view.cuentas import Ui_cuentasWindow
 from view.cuenta_create import Ui_CuentasIterableWindow
@@ -123,7 +123,23 @@ class AccountCreateWindow(QMainWindow,Ui_CuentasIterableWindow):
         balance = self.input_balance.text()
         client = self.slect_titular.currentIndex()
         client_id = self.slect_titular.itemData(client)
-
+        
+        if not cbu:
+            QMessageBox.warning(self, "Error", "Ingrese solo datos numericos")
+            return
+        if not type:
+            QMessageBox.warning(self, "Error", "Elija un tipo")
+            return
+        if not alias:
+            QMessageBox.warning(self, "Error", "Porfavor Rellene el Alias")
+            return
+        if not balance:
+            QMessageBox.warning(self, "Error", "Porvavor ingrese solo datos numericos")
+            return
+        if not client:
+            QMessageBox.warning(self, "Error", "Seleccione un titular")
+            return
+        
         AccountsDB().store(cbu, type, client_id, alias, balance)
 
         self.fatherInstance.showTable()
@@ -184,6 +200,21 @@ class AccountEditWindow(QMainWindow,Ui_CuentasIterableWindow):
         alias = self.input_alias.text()
         client = self.slect_titular.currentIndex()
         client_id = self.slect_titular.itemData(client)
+        
+        if not cbu:
+            QMessageBox.warning(self, "Error", "Ingrese solo datos numericos")
+            return
+        if not type:
+            QMessageBox.warning(self, "Error", "Elija un tipo")
+            return
+        if not alias:
+            QMessageBox.warning(self, "Error", "Porfavor Rellene el Alias")
+            return
+
+        if not client:
+            QMessageBox.warning(self, "Error", "Seleccione un titular")
+            return
+        
         
         AccountsDB().update(cbu, type, client_id, alias, self.updateID)
 

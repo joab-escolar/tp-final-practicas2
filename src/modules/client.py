@@ -1,6 +1,6 @@
 """MAIN"""
 import sys
-from PySide6.QtWidgets import QMainWindow, QTableWidget, QTableWidgetItem, QAbstractItemView
+from PySide6.QtWidgets import QMainWindow, QTableWidget, QTableWidgetItem, QAbstractItemView, QMessageBox
 from PySide6.QtCore import QDateTime 
 from view.cliente import Ui_clienteWindow
 from view.cliente_create import Ui_ClienteIterableWindow
@@ -116,6 +116,21 @@ class ClientCreateWindow(QMainWindow,Ui_ClienteIterableWindow):
         direction = self.input_direccion.text()
         phone = self.input_telefono.text()
         status = 1 if self.btn_activo.isChecked() else 0
+        
+        if not name:
+            QMessageBox.warning(self, "Error", "Rellene el campo nombre")
+            return
+        if not lastname:
+            QMessageBox.warning(self, "Error", "Rellene el campo apellido")
+            return
+        
+        if not dni.isdigit() or len(dni) != 8:
+            QMessageBox.warning(self, "Error", "DNI invalido, debe ser numerico y de 8 digitos")
+            return
+        
+        if not phone.isdigit():
+            QMessageBox.warning(self, "Error", "El numero de telefono debe ser numerico")
+            return
 
         newClient = ClientsDB().store(name, lastname, dni, birthdate, direction, phone, status)
 
@@ -174,6 +189,21 @@ class UsersEditWindow(QMainWindow,Ui_ClienteIterableWindow):
         direction = self.input_direccion.text()
         phone = self.input_telefono.text()
         status = 1 if self.btn_activo.isChecked() else 0
+        
+        if not name:
+            QMessageBox.warning(self, "Error", "Rellene el campo nombre")
+            return
+        if not lastname:
+            QMessageBox.warning(self, "Error", "Rellene el campo apellido")
+            return
+        
+        if not dni.isdigit() or len(dni) != 8:
+            QMessageBox.warning(self, "Error", "DNI invalido, debe ser numerico y de 8 digitos")
+            return
+        
+        if not phone.isdigit():
+            QMessageBox.warning(self, "Error", "El numero de telefono debe ser numerico")
+            return
         
         ClientsDB().update(name, lastname, dni, birthdate, direction, phone, status, self.updateID)
 
