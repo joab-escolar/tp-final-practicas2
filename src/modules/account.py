@@ -1,0 +1,194 @@
+"""MAIN"""
+import sys
+from PySide6.QtWidgets import QMainWindow, QTableWidget, QTableWidgetItem, QAbstractItemView
+from PySide6.QtCore import QDateTime 
+from view.cuentas import Ui_cuentasWindow
+from view.cuenta_create import Ui_CuentasIterableWindow
+from utils.sqlRaw import sql
+from database.accountsDB import AccountsDB
+
+# MAIN USER WINDOWS 
+class AccountWindow(QMainWindow,Ui_cuentasWindow):
+    def __init__(self, logedUser, fatherInstance):
+        super().__init__()
+        self.fatherInstance = fatherInstance
+        self.logedUser = logedUser
+        self.user = list(logedUser[0])
+        self.setupUi(self)
+        self.handlerCuentas()
+    
+    def handlerCuentas(self):
+        self.setUser()
+        self.loadTable()
+        self.showTable()
+        self.connection()
+
+    def setUser(self):
+        self.lbl_show_user.setText(f"({self.user[6]}) {self.user[2]}")
+
+    def loadTable(self):
+        self.table_accounts.setColumnCount(8)
+        self.table_accounts.setHorizontalHeaderLabels(["ID" ,"cbu", "titular", "tipo", "alias", "Balance", "Creacion", "Estado"])
+        self.table_accounts.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
+        self.table_accounts.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
+
+    def showTable(self):
+        self.table_accounts.setRowCount(0)
+        accounts = sql("SELECT * FROM accounts;")
+        for item in accounts:
+            account = list(item)
+            client =  list(sql(f"SELECT * FROM clients WHERE id = {account[2]}")[0])
+            row_position = self.table_accounts.rowCount()
+            self.table_accounts.insertRow(row_position)
+            self.table_accounts.setItem(row_position, 0, QTableWidgetItem(f"{account[0]}"))
+            self.table_accounts.setItem(row_position, 1, QTableWidgetItem(f"{account[1]}"))
+            self.table_accounts.setItem(row_position, 2, QTableWidgetItem(f"{client[2]} {client[1]}"))
+            self.table_accounts.setItem(row_position, 3, QTableWidgetItem(account[3]))
+            self.table_accounts.setItem(row_position, 4, QTableWidgetItem(account[4]))
+            self.table_accounts.setItem(row_position, 5, QTableWidgetItem(f"{account[5]}"))
+            self.table_accounts.setItem(row_position, 6, QTableWidgetItem(account[6]))
+            self.table_accounts.setItem(row_position, 7, QTableWidgetItem(f"{account[7]}"))
+
+
+    def connection(self):
+        self.btn_back.clicked.connect(self.goBack)
+        self.btn_create.clicked.connect(self.showCreate)
+        self.btn_edit.clicked.connect(self.showEdit)
+        self.btn_delete.clicked.connect(self.delete)
+
+    def goBack(self):
+        self.close()
+        self.fatherInstance.show()
+
+    def showCreate(self):
+        self.close()
+        self.clientCreate = AccountCreateWindow(self.logedUser, self)
+        self.clientCreate.show()
+
+    def showEdit(self):
+        selectedRow = self.table_accounts.currentRow()
+        if selectedRow >= 0:
+            self.close()
+            self.accountEdit = AccountEditWindow(self.logedUser, self, self.table_accounts.item(selectedRow,0).text())
+            self.accountEdit.show()
+        else:
+            print("error")
+
+    def delete(self):
+        selectedRow = self.table_accounts.currentRow()
+        if selectedRow >= 0:
+            deletedID = int(self.table_accounts.item(selectedRow,0).text())
+            AccountsDB().delete(deletedID)
+        else:
+            print("error")
+        self.showTable()
+
+# CREATE USER WINDOW
+class AccountCreateWindow(QMainWindow,Ui_CuentasIterableWindow):
+    def __init__(self, logedUser, fatherInstance):
+        super().__init__()
+        self.fatherInstance = fatherInstance
+        self.logedUser = logedUser
+        self.user = list(logedUser[0])
+        self.setupUi(self)
+        self.handlerCuentas()
+
+    def handlerCuentas(self):
+        self.setUser()
+        self.uploadValues()
+        self.connection()
+        
+    def setUser(self):
+        self.lbl_show_user.setText(f"({self.user[6]}) {self.user[2]}")
+
+    def connection(self):
+        self.btn_back.clicked.connect(self.goBack)
+        self.btn_crear.clicked.connect(self.store)
+
+    def goBack(self):
+        self.close()
+        self.fatherInstance.show()
+
+    def uploadValues(self):
+        clients = sql("SELECT * FROM clients;")
+        for item in clients:
+            listItem = list(item)
+            self.slect_titular.addItem(f"{listItem[2]} {listItem[1]}")
+            self.slect_titular.setItemData(self.slect_titular.count() - 1, listItem[0])
+
+    def store(self):
+        cbu = self.input_cbu.text()
+        type = self.input_tipo.text()
+        alias = self.input_alias.text()
+        balance = self.input_balance.text()
+        client = self.slect_titular.currentIndex()
+        client_id = self.slect_titular.itemData(client)
+
+        AccountsDB().store(cbu, type, client_id, alias, balance)
+
+        self.fatherInstance.showTable()
+        self.goBack()
+
+
+
+class AccountEditWindow(QMainWindow,Ui_CuentasIterableWindow):
+    def __init__(self, logedUser, fatherInstance, ID):
+        super().__init__()
+        self.fatherInstance = fatherInstance
+        self.logedUser = logedUser
+        self.user = list(logedUser[0])
+        self.updateID = int(ID)
+        self.setupUi(self)
+        self.handlerCuentas()
+
+    def handlerCuentas(self):
+        self.setUser()
+        self.uploadValues()
+        self.loadValues()
+        self.connection()
+        
+    def setUser(self):
+        self.lbl_show_user.setText(f"({self.user[6]}) {self.user[2]}")
+    
+    def uploadValues(self):
+        clients = sql("SELECT * FROM clients;")
+        for item in clients:
+            listItem = list(item)
+            self.slect_titular.addItem(f"{listItem[2]} {listItem[1]}")
+            self.slect_titular.setItemData(self.slect_titular.count() - 1, listItem[0])
+
+    def loadValues(self):
+        updated = list(sql(f"SELECT * FROM accounts WHERE id = {self.updateID};")[0])
+        self.input_balance.hide()
+        self.lbl_balance.hide()
+        self.input_cbu.setText(f"{updated[1]}")
+        self.input_tipo.setText(updated[3])
+        self.input_alias.setText(updated[4])
+        for index in range(self.slect_titular.count()):
+            if self.slect_titular.itemData(index) == updated[2]:
+                self.slect_titular.setCurrentIndex(index)
+                break
+
+
+    def connection(self):
+        self.btn_back.clicked.connect(self.goBack)
+        self.btn_crear.clicked.connect(self.update)
+
+    def goBack(self):
+        self.close()
+        self.fatherInstance.show()
+
+    def update(self):
+        cbu = self.input_cbu.text()
+        type = self.input_tipo.text()
+        alias = self.input_alias.text()
+        client = self.slect_titular.currentIndex()
+        client_id = self.slect_titular.itemData(client)
+        
+        AccountsDB().update(cbu, type, client_id, alias, self.updateID)
+
+        self.fatherInstance.showTable()
+        self.goBack()
+
+
+        

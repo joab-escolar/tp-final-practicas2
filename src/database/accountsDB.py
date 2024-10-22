@@ -16,6 +16,7 @@ class AccountsDB:
                 alias TEXT UNIQUE NOT NULL CHECK(length(alias) <= 30),
                 balance REAL NOT NULL,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                status status INTEGER DEFAULT 1,
                 FOREIGN KEY (client_id) REFERENCES clients(id)
             );
         ''')
@@ -44,22 +45,51 @@ class AccountsDB:
         db.commit()
         db.close()
 
-    # def store(self, username, password, role_id):
-    #     db = sqlite3.connect('banco.db')
-    #     cursor = db.cursor()
+    def store(self, cbu, type, client_id, alias, balance):
+        db = sqlite3.connect('banco.db')
+        cursor = db.cursor()
 
-    #     query = '''
-    #         INSERT INTO users (username, password, role_id,last_connection)
-    #         VALUES (?, ?, ?, ?);
-    #     '''
+        query = '''
+            INSERT INTO accounts (cbu, client_id, type, alias, balance)
+            VALUES (?, ?, ?, ?, ?);
+        '''
 
-    #     cursor.execute(query, (username, password, role_id, getCurrentTime()))
+        cursor.execute(query, (cbu, client_id, type, alias, balance))
         
-    #     newUser = cursor.fetchall()
+        newAccount = cursor.fetchall()
 
-    #     db.commit()
-    #     db.close()
+        db.commit()
+        db.close()
 
-    #     return newUser
+        return newAccount
+
+    def update(self, cbu, type, client_id, alias, id):
+        db = sqlite3.connect('banco.db')
+        cursor = db.cursor()
+
+        query = f"UPDATE accounts SET cbu = {cbu}, client_id = {client_id}, type = '{type}' , alias = '{alias}' WHERE id = {id};"
+
+        cursor.execute(query)
+        
+        updated = cursor.fetchall()
+
+        db.commit()
+        db.close()
+
+        return updated
+    
+    def delete(self, id):
+        db = sqlite3.connect('banco.db')
+        cursor = db.cursor()
+
+
+        cursor.execute(f"UPDATE accounts SET status = 0 WHERE id = {id}")
+        
+        updated = cursor.fetchall()
+
+        db.commit()
+        db.close()
+
+        return updated
 
 

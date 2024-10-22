@@ -69,8 +69,8 @@ class ClientWindow(QMainWindow,Ui_clienteWindow):
         selectedRow = self.table_clients.currentRow()
         if selectedRow >= 0:
             self.close()
-            self.userEdit = UsersEditWindow(self.logedUser, self, self.table_clients.item(selectedRow,0).text())
-            self.userEdit.show()
+            self.clietEdit = UsersEditWindow(self.logedUser, self, self.table_clients.item(selectedRow,0).text())
+            self.clietEdit.show()
         else:
             print("error")
 
