@@ -37,7 +37,7 @@ class AccountsDB:
                 VALUES 
                     (1122334455, 1, 'CUENTA CORRIENTE', 'alias-1', 100000.00),
                     (1234567890, 2, 'CAJA AHORRO', 'alias-2', 40003.33),
-                    (6666666666, 1, 'CUENTA CORRIENTE', 'alias-1', 100000.00);
+                    (6666666666, 1, 'CUENTA CORRIENTE', 'alias-3', 100000.00);
             ''')
             printGreen("RUN SEED ACCOUNTS")
 
