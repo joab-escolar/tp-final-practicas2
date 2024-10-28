@@ -29,8 +29,8 @@ class LoginWindow(QMainWindow,Ui_LoginWindow):
         password = self.input_password.text()
 
         # #debug
-        # username = 'admin'
-        # password = 'admin'
+        username = 'admin'
+        password = 'admin'
 
         login = Login()
         logedUser = login.login(username, password)

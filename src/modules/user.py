@@ -27,8 +27,8 @@ class UsersWindow(QMainWindow,Ui_usersWindow):
         self.lbl_show_user.setText(f"({self.user[6]}) {self.user[2]}")
 
     def loadTable(self):
-        self.table_user.setColumnCount(4)
-        self.table_user.setHorizontalHeaderLabels(["ID" ,"usuario", "rol", "ultam coneccion", "creacion"])
+        self.table_user.setColumnCount(5)
+        self.table_user.setHorizontalHeaderLabels(["ID" ,"usuario", "rol", "creacion", "ultam coneccion"])
         self.table_user.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
         self.table_user.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
 
@@ -44,6 +44,7 @@ class UsersWindow(QMainWindow,Ui_usersWindow):
             self.table_user.setItem(row_position, 1, QTableWidgetItem(user[1]))
             self.table_user.setItem(row_position, 2, QTableWidgetItem(role[1]))
             self.table_user.setItem(row_position, 3, QTableWidgetItem(user[4]))
+            self.table_user.setItem(row_position, 4, QTableWidgetItem(user[5]))
 
 
     def connection(self):
