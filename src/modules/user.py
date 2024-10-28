@@ -1,6 +1,6 @@
 """MAIN"""
 import sys
-from PySide6.QtWidgets import QMainWindow, QTableWidget, QTableWidgetItem, QAbstractItemView, QMessageBox
+from PySide6.QtWidgets import QMainWindow, QTableWidget, QTableWidgetItem, QAbstractItemView, QMessageBox, QLineEdit
 from view.user import Ui_usersWindow
 from view.user_create import Ui_usersIterableWindow
 # from view.users import Ui_usersIterateWindow
@@ -74,6 +74,9 @@ class UsersWindow(QMainWindow,Ui_usersWindow):
     def delete(self):
         selectedRow = self.table_user.currentRow()
         userID = int(self.table_user.item(selectedRow,0).text())
+        if userID == 1:
+            QMessageBox.warning(self, "Error", "No se puede eliminar al usuario maestro!!!")
+            return
         UsersDB().delete(userID)
         self.showTable()
 
@@ -90,6 +93,7 @@ class UsersCreateWindow(QMainWindow,Ui_usersIterableWindow):
     def handlerUsers(self):
         self.setUser()
         self.mapRoles()
+        self.hidden()
         self.connection()
         
     def setUser(self):
@@ -101,6 +105,10 @@ class UsersCreateWindow(QMainWindow,Ui_usersIterableWindow):
             self.slect_roles.addItem(role)
             self.slect_roles.setItemData(self.slect_roles.count() - 1,id)
             
+    def hidden(self):
+        self.input_password.setEchoMode(QLineEdit.Password)
+        self.input_password.setPlaceholderText("Ingresar contraseña")
+
     def connection(self):
         self.btn_back.clicked.connect(self.goBack)
         self.btn_store.clicked.connect(self.store)
@@ -117,6 +125,10 @@ class UsersCreateWindow(QMainWindow,Ui_usersIterableWindow):
     
         if not username:
             QMessageBox.warning(self, "Error", "El campo de nombre de usuario está vacío.")
+            return
+
+        if len(sql(f"SELECT * FROM users WHERE username = '{username}';")) != 0:
+            QMessageBox.warning(self, "Error", "El usuario ya existe!!")
             return
 
         if not password:
@@ -146,6 +158,7 @@ class UsersEditWindow(QMainWindow,Ui_usersIterableWindow):
         self.setUser()
         self.mapRoles()
         self.loadValues()
+        self.hidden()
         self.connection()
         
     def setUser(self):
@@ -165,6 +178,10 @@ class UsersEditWindow(QMainWindow,Ui_usersIterableWindow):
                 self.slect_roles.setCurrentIndex(index)
                 break
 
+    def hidden(self):
+        self.input_password.setEchoMode(QLineEdit.Password)
+        self.input_password.setPlaceholderText("Ingresar contraseña")
+
     def connection(self):
         self.btn_back.clicked.connect(self.goBack)
         self.btn_store.clicked.connect(self.update)
@@ -183,6 +200,12 @@ class UsersEditWindow(QMainWindow,Ui_usersIterableWindow):
             QMessageBox.warning(self, "Error, Nombre vacio.")
             return 
         
+        validateUser = sql(f"SELECT * FROM users WHERE username = '{username}';")
+        if len(validateUser) != 0:
+            if list(validateUser[0])[0] != self.udateUserID:
+                QMessageBox.warning(self, "Error", "El usuario ya existe!!")
+                return
+
         UsersDB().update(username, password, role_id, self.udateUserID)
 
         self.fatherInstance.showTable()
