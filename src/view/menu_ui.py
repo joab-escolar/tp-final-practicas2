@@ -68,7 +68,7 @@ class Ui_menuWindow(object):
         self.btn_logout.setObjectName(u"btn_logout")
         self.btn_logout.setGeometry(QRect(420, 430, 181, 41))
         self.btn_logout.setStyleSheet(u"background-color: rgb(131, 131, 131);\n"
-"selection-background-color: rgb(199, 199, 199);")
+"selection-background-color: rgb(17, 51, 83);")
         menuWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(menuWindow)
         self.menubar.setObjectName(u"menubar")
