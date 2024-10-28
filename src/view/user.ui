@@ -25,6 +25,9 @@
   <property name="windowTitle">
    <string>BANCO</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(17, 51, 83);</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="label">
     <property name="geometry">
@@ -71,6 +74,11 @@
       <height>41</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(17, 51, 83);
+selection-background-color: rgb(23, 69, 112);
+</string>
+    </property>
     <property name="text">
      <string>Crear</string>
     </property>
@@ -83,6 +91,9 @@
       <width>111</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(39, 39, 39);</string>
     </property>
     <property name="text">
      <string>Atras</string>
@@ -97,6 +108,11 @@
       <height>41</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(17, 51, 83);
+selection-background-color: rgb(23, 69, 112);
+</string>
+    </property>
     <property name="text">
      <string>Editar</string>
     </property>
@@ -109,6 +125,9 @@
       <width>81</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(190, 0, 0);</string>
     </property>
     <property name="text">
      <string>Eliminar</string>
@@ -123,7 +142,92 @@
       <height>601</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(39, 39, 39);</string>
+    </property>
    </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>-40</y>
+      <width>51</width>
+      <height>961</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(166, 166, 166);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>-60</x>
+      <y>-60</y>
+      <width>161</width>
+      <height>901</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LayoutDirection::LeftToRight</enum>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(166, 166, 166);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>990</x>
+      <y>-70</y>
+      <width>21</width>
+      <height>901</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LayoutDirection::LeftToRight</enum>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(166, 166, 166);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <zorder>label_5</zorder>
+   <zorder>label_4</zorder>
+   <zorder>label_3</zorder>
+   <zorder>label</zorder>
+   <zorder>lbl_show_user</zorder>
+   <zorder>btn_create</zorder>
+   <zorder>btn_back</zorder>
+   <zorder>btn_edit</zorder>
+   <zorder>btn_delete</zorder>
+   <zorder>table_user</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

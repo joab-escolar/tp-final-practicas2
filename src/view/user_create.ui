@@ -25,6 +25,9 @@
   <property name="windowTitle">
    <string>BANCO</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(17, 51, 83);</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="label">
     <property name="geometry">
@@ -71,6 +74,10 @@
       <height>41</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(39, 39, 39);
+</string>
+    </property>
     <property name="text">
      <string>Atras</string>
     </property>
@@ -84,6 +91,10 @@
       <height>31</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(255, 255, 255);</string>
+    </property>
    </widget>
    <widget class="QComboBox" name="slect_roles">
     <property name="geometry">
@@ -93,6 +104,10 @@
       <width>171</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(255, 255, 255);</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="input_password">
@@ -104,6 +119,10 @@
       <height>31</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(255, 255, 255);</string>
+    </property>
    </widget>
    <widget class="QPushButton" name="btn_store">
     <property name="geometry">
@@ -113,6 +132,9 @@
       <width>171</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(85, 170, 127);</string>
     </property>
     <property name="text">
      <string>Guardar</string>

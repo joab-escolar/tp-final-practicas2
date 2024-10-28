@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'user_create.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.8.0
+## Created by: Qt User Interface Compiler version 6.7.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -26,6 +26,7 @@ class Ui_usersIterableWindow(object):
         usersIterableWindow.resize(1000, 800)
         usersIterableWindow.setMinimumSize(QSize(1000, 800))
         usersIterableWindow.setMaximumSize(QSize(1000, 800))
+        usersIterableWindow.setStyleSheet(u"background-color: rgb(17, 51, 83);")
         self.centralwidget = QWidget(usersIterableWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.label = QLabel(self.centralwidget)
@@ -41,18 +42,27 @@ class Ui_usersIterableWindow(object):
         self.btn_back = QPushButton(self.centralwidget)
         self.btn_back.setObjectName(u"btn_back")
         self.btn_back.setGeometry(QRect(870, 10, 111, 41))
+        self.btn_back.setStyleSheet(u"background-color: rgb(39, 39, 39);\n"
+"")
         self.input_username = QLineEdit(self.centralwidget)
         self.input_username.setObjectName(u"input_username")
         self.input_username.setGeometry(QRect(400, 230, 171, 31))
+        self.input_username.setStyleSheet(u"color: rgb(0, 0, 0);\n"
+"background-color: rgb(255, 255, 255);")
         self.slect_roles = QComboBox(self.centralwidget)
         self.slect_roles.setObjectName(u"slect_roles")
         self.slect_roles.setGeometry(QRect(400, 350, 171, 31))
+        self.slect_roles.setStyleSheet(u"color: rgb(0, 0, 0);\n"
+"background-color: rgb(255, 255, 255);")
         self.input_password = QLineEdit(self.centralwidget)
         self.input_password.setObjectName(u"input_password")
         self.input_password.setGeometry(QRect(400, 290, 171, 31))
+        self.input_password.setStyleSheet(u"color: rgb(0, 0, 0);\n"
+"background-color: rgb(255, 255, 255);")
         self.btn_store = QPushButton(self.centralwidget)
         self.btn_store.setObjectName(u"btn_store")
         self.btn_store.setGeometry(QRect(400, 410, 171, 31))
+        self.btn_store.setStyleSheet(u"background-color: rgb(85, 170, 127);")
         self.label_2 = QLabel(self.centralwidget)
         self.label_2.setObjectName(u"label_2")
         self.label_2.setGeometry(QRect(400, 210, 111, 16))

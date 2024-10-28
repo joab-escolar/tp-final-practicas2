@@ -69,16 +69,21 @@ class UsersWindow(QMainWindow,Ui_usersWindow):
             self.userEdit = UsersEditWindow(self.logedUser, self, self.table_user.item(selectedRow,0).text())
             self.userEdit.show()
         else:
-            print("error")
+            QMessageBox.warning(self, "Error", "Seleccione una fila!!")
+            return
 
     def delete(self):
         selectedRow = self.table_user.currentRow()
-        userID = int(self.table_user.item(selectedRow,0).text())
-        if userID == 1:
-            QMessageBox.warning(self, "Error", "No se puede eliminar al usuario maestro!!!")
+        if selectedRow >= 0:
+            userID = int(self.table_user.item(selectedRow,0).text())
+            if userID == 1:
+                QMessageBox.warning(self, "Error", "No se puede eliminar al usuario maestro!!!")
+                return
+            UsersDB().delete(userID)
+            self.showTable()
+        else:
+            QMessageBox.warning(self, "Error", "Seleccione una fila!!")
             return
-        UsersDB().delete(userID)
-        self.showTable()
 
 # CREATE USER WINDOW
 class UsersCreateWindow(QMainWindow,Ui_usersIterableWindow):
