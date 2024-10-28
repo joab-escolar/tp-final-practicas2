@@ -22,7 +22,10 @@ class Ui_menuWindow(object):
     def setupUi(self, menuWindow):
         if not menuWindow.objectName():
             menuWindow.setObjectName(u"menuWindow")
-        menuWindow.resize(800, 600)
+        menuWindow.resize(1000, 800)
+        menuWindow.setMinimumSize(QSize(1000, 800))
+        menuWindow.setMaximumSize(QSize(1000, 800))
+        menuWindow.setStyleSheet(u"background-color: rgb(30, 30, 30);")
         self.centralwidget = QWidget(menuWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.label = QLabel(self.centralwidget)
@@ -31,29 +34,45 @@ class Ui_menuWindow(object):
         font = QFont()
         font.setPointSize(15)
         self.label.setFont(font)
+        self.label.setStyleSheet(u"background-color: rgb(30, 30, 30);")
         self.lbl_show_user = QLabel(self.centralwidget)
         self.lbl_show_user.setObjectName(u"lbl_show_user")
         self.lbl_show_user.setGeometry(QRect(90, 10, 451, 31))
         self.lbl_show_user.setFont(font)
+        self.lbl_show_user.setStyleSheet(u"background-color: rgb(30, 30, 30);")
         self.btn_users = QPushButton(self.centralwidget)
         self.btn_users.setObjectName(u"btn_users")
-        self.btn_users.setGeometry(QRect(300, 140, 181, 41))
+        self.btn_users.setGeometry(QRect(420, 230, 181, 41))
+        self.btn_users.setStyleSheet(u"background-color: rgb(17, 51, 83);\n"
+"selection-background-color: rgb(23, 69, 112);\n"
+"")
         self.btn_clients = QPushButton(self.centralwidget)
         self.btn_clients.setObjectName(u"btn_clients")
-        self.btn_clients.setGeometry(QRect(300, 190, 181, 41))
+        self.btn_clients.setGeometry(QRect(420, 280, 181, 41))
+        self.btn_clients.setStyleSheet(u"background-color: rgb(17, 51, 83);\n"
+"selection-background-color: rgb(23, 69, 112);\n"
+"")
         self.btn_account = QPushButton(self.centralwidget)
         self.btn_account.setObjectName(u"btn_account")
-        self.btn_account.setGeometry(QRect(300, 240, 181, 41))
+        self.btn_account.setGeometry(QRect(420, 330, 181, 41))
+        self.btn_account.setStyleSheet(u"background-color: rgb(17, 51, 83);\n"
+"selection-background-color: rgb(23, 69, 112);\n"
+"")
         self.btn_transactions = QPushButton(self.centralwidget)
         self.btn_transactions.setObjectName(u"btn_transactions")
-        self.btn_transactions.setGeometry(QRect(300, 290, 181, 41))
+        self.btn_transactions.setGeometry(QRect(420, 380, 181, 41))
+        self.btn_transactions.setStyleSheet(u"background-color: rgb(17, 51, 83);\n"
+"selection-background-color: rgb(23, 69, 112);\n"
+"")
         self.btn_logout = QPushButton(self.centralwidget)
         self.btn_logout.setObjectName(u"btn_logout")
-        self.btn_logout.setGeometry(QRect(300, 340, 181, 41))
+        self.btn_logout.setGeometry(QRect(420, 430, 181, 41))
+        self.btn_logout.setStyleSheet(u"background-color: rgb(131, 131, 131);\n"
+"selection-background-color: rgb(199, 199, 199);")
         menuWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(menuWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 800, 33))
+        self.menubar.setGeometry(QRect(0, 0, 1000, 33))
         menuWindow.setMenuBar(self.menubar)
         self.statusbar = QStatusBar(menuWindow)
         self.statusbar.setObjectName(u"statusbar")
