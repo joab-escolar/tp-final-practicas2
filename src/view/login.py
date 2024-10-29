@@ -27,6 +27,8 @@ class Ui_LoginWindow(object):
         LoginWindow.resize(1000, 800)
         LoginWindow.setMinimumSize(QSize(1000, 800))
         LoginWindow.setMaximumSize(QSize(1000, 800))
+        icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.Computer))
+        LoginWindow.setWindowIcon(icon)
         LoginWindow.setStyleSheet(u"background-color: rgb(17, 51, 83);")
         self.centralwidget = QWidget(LoginWindow)
         self.centralwidget.setObjectName(u"centralwidget")

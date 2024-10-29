@@ -26,6 +26,8 @@ class Ui_usersWindow(object):
         usersWindow.resize(1000, 800)
         usersWindow.setMinimumSize(QSize(1000, 800))
         usersWindow.setMaximumSize(QSize(1000, 800))
+        icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.Computer))
+        usersWindow.setWindowIcon(icon)
         usersWindow.setStyleSheet(u"background-color: rgb(17, 51, 83);")
         self.centralwidget = QWidget(usersWindow)
         self.centralwidget.setObjectName(u"centralwidget")

@@ -25,6 +25,12 @@
   <property name="windowTitle">
    <string>BANCO</string>
   </property>
+  <property name="windowIcon">
+   <iconset theme="QIcon::ThemeIcon::Computer"/>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(17, 51, 83);</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="label">
     <property name="geometry">
@@ -71,6 +77,9 @@
       <height>41</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(39, 39, 39)</string>
+    </property>
     <property name="text">
      <string>Nuevo</string>
     </property>
@@ -83,6 +92,9 @@
       <width>111</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(39, 39, 39)</string>
     </property>
     <property name="text">
      <string>Atras</string>
@@ -97,6 +109,9 @@
       <height>41</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(39, 39, 39)</string>
+    </property>
     <property name="text">
      <string>Editar</string>
     </property>
@@ -109,6 +124,9 @@
       <width>81</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(190, 0, 0);</string>
     </property>
     <property name="text">
      <string>Eliminar</string>
@@ -123,6 +141,9 @@
       <height>601</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(39, 39, 39)</string>
+    </property>
    </widget>
    <widget class="QPushButton" name="btn_history">
     <property name="geometry">
@@ -132,6 +153,9 @@
       <width>81</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(176, 59, 0);</string>
     </property>
     <property name="text">
      <string>Historial</string>
@@ -181,6 +205,9 @@
       <width>261</width>
       <height>461</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(39, 39, 39)</string>
     </property>
    </widget>
   </widget>

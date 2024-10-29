@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'cliente_create.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.8.0
+## Created by: Qt User Interface Compiler version 6.7.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -24,6 +24,9 @@ class Ui_ClienteIterableWindow(object):
         if not ClienteIterableWindow.objectName():
             ClienteIterableWindow.setObjectName(u"ClienteIterableWindow")
         ClienteIterableWindow.resize(1000, 800)
+        icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.Computer))
+        ClienteIterableWindow.setWindowIcon(icon)
+        ClienteIterableWindow.setStyleSheet(u"background-color: rgb(17, 51, 83);")
         self.centralwidget = QWidget(ClienteIterableWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.label = QLabel(self.centralwidget)
@@ -39,12 +42,17 @@ class Ui_ClienteIterableWindow(object):
         self.btn_back = QPushButton(self.centralwidget)
         self.btn_back.setObjectName(u"btn_back")
         self.btn_back.setGeometry(QRect(860, 20, 111, 41))
+        self.btn_back.setStyleSheet(u"background-color: rgb(39, 39, 39)")
         self.input_nombre = QLineEdit(self.centralwidget)
         self.input_nombre.setObjectName(u"input_nombre")
         self.input_nombre.setGeometry(QRect(330, 210, 171, 31))
+        self.input_nombre.setStyleSheet(u"color: rgb(0, 0, 0);\n"
+"background-color: rgb(255, 255, 255);")
         self.btn_create = QPushButton(self.centralwidget)
         self.btn_create.setObjectName(u"btn_create")
         self.btn_create.setGeometry(QRect(330, 460, 351, 31))
+        self.btn_create.setStyleSheet(u"background-color: rgb(11, 3, 255);\n"
+"selection-background-color: rgb(138, 138, 138);")
         self.label_2 = QLabel(self.centralwidget)
         self.label_2.setObjectName(u"label_2")
         self.label_2.setGeometry(QRect(340, 190, 111, 16))
@@ -60,21 +68,29 @@ class Ui_ClienteIterableWindow(object):
         self.input_apellido = QLineEdit(self.centralwidget)
         self.input_apellido.setObjectName(u"input_apellido")
         self.input_apellido.setGeometry(QRect(510, 210, 171, 31))
+        self.input_apellido.setStyleSheet(u"color: rgb(0, 0, 0);\n"
+"background-color: rgb(255, 255, 255);")
         self.label_6 = QLabel(self.centralwidget)
         self.label_6.setObjectName(u"label_6")
         self.label_6.setGeometry(QRect(340, 310, 111, 16))
         self.input_dni = QLineEdit(self.centralwidget)
         self.input_dni.setObjectName(u"input_dni")
         self.input_dni.setGeometry(QRect(330, 270, 171, 31))
+        self.input_dni.setStyleSheet(u"color: rgb(0, 0, 0);\n"
+"background-color: rgb(255, 255, 255);")
         self.label_7 = QLabel(self.centralwidget)
         self.label_7.setObjectName(u"label_7")
         self.label_7.setGeometry(QRect(520, 310, 111, 16))
         self.input_direccion = QLineEdit(self.centralwidget)
         self.input_direccion.setObjectName(u"input_direccion")
         self.input_direccion.setGeometry(QRect(330, 330, 171, 31))
+        self.input_direccion.setStyleSheet(u"color: rgb(0, 0, 0);\n"
+"background-color: rgb(255, 255, 255);")
         self.input_telefono = QLineEdit(self.centralwidget)
         self.input_telefono.setObjectName(u"input_telefono")
         self.input_telefono.setGeometry(QRect(510, 330, 171, 31))
+        self.input_telefono.setStyleSheet(u"color: rgb(0, 0, 0);\n"
+"background-color: rgb(255, 255, 255);")
         self.label_8 = QLabel(self.centralwidget)
         self.label_8.setObjectName(u"label_8")
         self.label_8.setGeometry(QRect(340, 370, 111, 16))
@@ -87,6 +103,8 @@ class Ui_ClienteIterableWindow(object):
         self.input_fechaN = QDateTimeEdit(self.centralwidget)
         self.input_fechaN.setObjectName(u"input_fechaN")
         self.input_fechaN.setGeometry(QRect(510, 270, 171, 31))
+        self.input_fechaN.setStyleSheet(u"color: rgb(0, 0, 0);\n"
+"background-color: rgb(255, 255, 255);")
         ClienteIterableWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(ClienteIterableWindow)
         self.menubar.setObjectName(u"menubar")

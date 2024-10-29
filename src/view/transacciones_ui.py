@@ -26,6 +26,11 @@ class Ui_transanccionWindow(object):
         transanccionWindow.resize(1000, 800)
         transanccionWindow.setMinimumSize(QSize(1000, 800))
         transanccionWindow.setMaximumSize(QSize(1000, 800))
+        icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.Computer))
+        transanccionWindow.setWindowIcon(icon)
+        transanccionWindow.setStyleSheet(u"background-color: rgb(17, 51, 83);\n"
+"\n"
+"")
         self.centralwidget = QWidget(transanccionWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.label = QLabel(self.centralwidget)
@@ -41,12 +46,17 @@ class Ui_transanccionWindow(object):
         self.btn_nuevo = QPushButton(self.centralwidget)
         self.btn_nuevo.setObjectName(u"btn_nuevo")
         self.btn_nuevo.setGeometry(QRect(30, 70, 81, 41))
+        self.btn_nuevo.setStyleSheet(u"background-color: rgb(17, 51, 83);\n"
+"selection-background-color: rgb(23, 69, 112);\n"
+"")
         self.btn_back = QPushButton(self.centralwidget)
         self.btn_back.setObjectName(u"btn_back")
         self.btn_back.setGeometry(QRect(880, 10, 111, 41))
+        self.btn_back.setStyleSheet(u"background-color: rgb(39, 39, 39)")
         self.table_transacctions = QTableWidget(self.centralwidget)
         self.table_transacctions.setObjectName(u"table_transacctions")
         self.table_transacctions.setGeometry(QRect(30, 120, 651, 601))
+        self.table_transacctions.setStyleSheet(u"background-color: rgb(39, 39, 39)")
         transanccionWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(transanccionWindow)
         self.menubar.setObjectName(u"menubar")

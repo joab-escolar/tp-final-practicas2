@@ -25,6 +25,12 @@
   <property name="windowTitle">
    <string>BANCO</string>
   </property>
+  <property name="windowIcon">
+   <iconset theme="QIcon::ThemeIcon::Computer"/>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(17, 51, 83);</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="label">
     <property name="geometry">
@@ -71,6 +77,9 @@
       <height>41</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(39, 39, 39)</string>
+    </property>
     <property name="text">
      <string>Atras</string>
     </property>
@@ -83,6 +92,9 @@
       <width>651</width>
       <height>601</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(39, 39, 39)</string>
     </property>
    </widget>
   </widget>

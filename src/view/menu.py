@@ -25,6 +25,8 @@ class Ui_menuWindow(object):
         menuWindow.resize(1000, 800)
         menuWindow.setMinimumSize(QSize(1000, 800))
         menuWindow.setMaximumSize(QSize(1000, 800))
+        icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.Computer))
+        menuWindow.setWindowIcon(icon)
         menuWindow.setStyleSheet(u"")
         self.centralwidget = QWidget(menuWindow)
         self.centralwidget.setObjectName(u"centralwidget")

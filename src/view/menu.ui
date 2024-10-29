@@ -25,6 +25,9 @@
   <property name="windowTitle">
    <string>BANCO</string>
   </property>
+  <property name="windowIcon">
+   <iconset theme="QIcon::ThemeIcon::Computer"/>
+  </property>
   <property name="styleSheet">
    <string notr="true"/>
   </property>
@@ -65,8 +68,7 @@
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">
-</string>
+     <string notr="true"/>
     </property>
     <property name="text">
      <string/>

@@ -26,6 +26,11 @@ class Ui_transaccionAltaWindow(object):
         transaccionAltaWindow.resize(1000, 800)
         transaccionAltaWindow.setMinimumSize(QSize(1000, 800))
         transaccionAltaWindow.setMaximumSize(QSize(1000, 800))
+        icon = QIcon(QIcon.fromTheme(QIcon.ThemeIcon.Computer))
+        transaccionAltaWindow.setWindowIcon(icon)
+        transaccionAltaWindow.setStyleSheet(u"background-color: rgb(17, 51, 83);\n"
+"\n"
+"")
         self.centralwidget = QWidget(transaccionAltaWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.label = QLabel(self.centralwidget)
@@ -41,6 +46,7 @@ class Ui_transaccionAltaWindow(object):
         self.btn_back = QPushButton(self.centralwidget)
         self.btn_back.setObjectName(u"btn_back")
         self.btn_back.setGeometry(QRect(870, 0, 111, 41))
+        self.btn_back.setStyleSheet(u"background-color: rgb(39, 39, 39)")
         self.label_3 = QLabel(self.centralwidget)
         self.label_3.setObjectName(u"label_3")
         self.label_3.setGeometry(QRect(320, 260, 111, 16))
@@ -56,18 +62,28 @@ class Ui_transaccionAltaWindow(object):
         self.btn_create = QPushButton(self.centralwidget)
         self.btn_create.setObjectName(u"btn_create")
         self.btn_create.setGeometry(QRect(310, 440, 341, 31))
+        self.btn_create.setStyleSheet(u"background-color: rgb(11, 3, 255);\n"
+"selection-background-color: rgb(138, 138, 138);")
         self.input_monto = QLineEdit(self.centralwidget)
         self.input_monto.setObjectName(u"input_monto")
         self.input_monto.setGeometry(QRect(490, 360, 171, 31))
+        self.input_monto.setStyleSheet(u"color: rgb(0, 0, 0);\n"
+"background-color: rgb(255, 255, 255);")
         self.slect_Egreso = QComboBox(self.centralwidget)
         self.slect_Egreso.setObjectName(u"slect_Egreso")
         self.slect_Egreso.setGeometry(QRect(310, 280, 171, 31))
+        self.slect_Egreso.setStyleSheet(u"color: rgb(0, 0, 0);\n"
+"background-color: rgb(255, 255, 255);")
         self.slect_Ingreso = QComboBox(self.centralwidget)
         self.slect_Ingreso.setObjectName(u"slect_Ingreso")
         self.slect_Ingreso.setGeometry(QRect(490, 280, 171, 31))
+        self.slect_Ingreso.setStyleSheet(u"color: rgb(0, 0, 0);\n"
+"background-color: rgb(255, 255, 255);")
         self.input_inpact_date = QDateTimeEdit(self.centralwidget)
         self.input_inpact_date.setObjectName(u"input_inpact_date")
         self.input_inpact_date.setGeometry(QRect(310, 360, 171, 31))
+        self.input_inpact_date.setStyleSheet(u"color: rgb(0, 0, 0);\n"
+"background-color: rgb(255, 255, 255);")
         transaccionAltaWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(transaccionAltaWindow)
         self.menubar.setObjectName(u"menubar")

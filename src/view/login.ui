@@ -25,6 +25,9 @@
   <property name="windowTitle">
    <string>BANCO</string>
   </property>
+  <property name="windowIcon">
+   <iconset theme="QIcon::ThemeIcon::Computer"/>
+  </property>
   <property name="styleSheet">
    <string notr="true">background-color: rgb(17, 51, 83);</string>
   </property>

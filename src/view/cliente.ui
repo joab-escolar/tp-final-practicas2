@@ -25,6 +25,12 @@
   <property name="windowTitle">
    <string>BANCO</string>
   </property>
+  <property name="windowIcon">
+   <iconset theme="QIcon::ThemeIcon::Computer"/>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(17, 51, 83);</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="label">
     <property name="geometry">
@@ -71,6 +77,9 @@
       <height>41</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(39, 39, 39)</string>
+    </property>
     <property name="text">
      <string>Nuevo</string>
     </property>
@@ -83,6 +92,9 @@
       <width>111</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(39, 39, 39)</string>
     </property>
     <property name="text">
      <string>Atras</string>
@@ -97,6 +109,9 @@
       <height>41</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(39, 39, 39)</string>
+    </property>
     <property name="text">
      <string>Editar</string>
     </property>
@@ -110,6 +125,9 @@
       <height>41</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(190, 0, 0);</string>
+    </property>
     <property name="text">
      <string>Eliminar</string>
     </property>
@@ -122,6 +140,9 @@
       <width>651</width>
       <height>601</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(39, 39, 39)</string>
     </property>
    </widget>
    <widget class="QLabel" name="lbl_total_clients">
@@ -186,6 +207,9 @@
       <width>261</width>
       <height>291</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(39, 39, 39)</string>
     </property>
    </widget>
   </widget>
