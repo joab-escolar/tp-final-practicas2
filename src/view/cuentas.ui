@@ -48,7 +48,7 @@
     <property name="geometry">
      <rect>
       <x>130</x>
-      <y>10</y>
+      <y>30</y>
       <width>631</width>
       <height>31</height>
      </rect>
@@ -79,7 +79,7 @@
     <property name="geometry">
      <rect>
       <x>860</x>
-      <y>10</y>
+      <y>20</y>
       <width>111</width>
       <height>41</height>
      </rect>
@@ -114,16 +114,6 @@
      <string>Eliminar</string>
     </property>
    </widget>
-   <widget class="QListWidget" name="list_estadisticas">
-    <property name="geometry">
-     <rect>
-      <x>690</x>
-      <y>130</y>
-      <width>291</width>
-      <height>601</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QTableWidget" name="table_accounts">
     <property name="geometry">
      <rect>
@@ -145,6 +135,52 @@
     </property>
     <property name="text">
      <string>Historial</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_total_positive_accounts">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>670</y>
+      <width>251</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_total_accounts">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>620</y>
+      <width>251</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="list_estadistica">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>130</y>
+      <width>261</width>
+      <height>461</height>
+     </rect>
     </property>
    </widget>
   </widget>

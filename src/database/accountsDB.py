@@ -1,6 +1,7 @@
 import sqlite3
 from utils.print import printGreen
 from utils.dateFunctions import getCurrentTime
+from utils.sqlRaw import sql
 
 class AccountsDB:
     def schema(self):
@@ -91,5 +92,22 @@ class AccountsDB:
         db.close()
 
         return updated
+    
+    def getTopAccounts(self):
+        accounts = sql("SELECT * FROM accounts WHERE status = 1;")
+        top_accounts = []
+        for element in accounts:
+            account = list(element)[0]
+            transacctions = list(sql(f'''
+                SELECT accounts.id, accounts.alias, COUNT(histories.id) AS total_histories
+                FROM accounts
+                LEFT JOIN histories ON histories.account_id = accounts.id
+                WHERE accounts.id = {account}
+                GROUP BY accounts.id, accounts.alias;
+            ''')[0])
+            top_accounts.append(transacctions)
+        top_accounts = sorted(top_accounts, key=lambda x: x[2], reverse=True)
+        top_accounts = top_accounts[:10]
+        return top_accounts
 
 

@@ -5,7 +5,7 @@ from PySide6.QtCore import QDateTime
 from view.cuentas import Ui_cuentasWindow
 from view.cuenta_create import Ui_CuentasIterableWindow
 from view.cuentas_info import Ui_cuentasInfoWindow
-from utils.sqlRaw import sql
+from utils.sqlRaw import sql, sqlCount
 from database.accountsDB import AccountsDB
 
 # MAIN USER WINDOWS 
@@ -34,8 +34,9 @@ class AccountWindow(QMainWindow,Ui_cuentasWindow):
         self.table_accounts.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
 
     def showTable(self):
+        self.showStatistics()
         self.table_accounts.setRowCount(0)
-        accounts = sql("SELECT * FROM accounts;")
+        accounts = sql("SELECT * FROM accounts WHERE status = 1;")
         for item in accounts:
             account = list(item)
             client =  list(sql(f"SELECT * FROM clients WHERE id = {account[2]}")[0])
@@ -50,6 +51,15 @@ class AccountWindow(QMainWindow,Ui_cuentasWindow):
             self.table_accounts.setItem(row_position, 6, QTableWidgetItem(account[6]))
             self.table_accounts.setItem(row_position, 7, QTableWidgetItem(f"{account[7]}"))
 
+    def showStatistics(self):
+        total_accounts = sqlCount("SELECT COUNT(*) FROM accounts WHERE status = 1;")[0]
+        total_positive_accounts = sqlCount("SELECT COUNT(*) FROM accounts WHERE balance >= 0 AND status = 1;")[0]
+        top_accounts = AccountsDB().getTopAccounts()
+        self.lbl_total_accounts.setText(f"TOTAL CUENTAS: {total_accounts}")
+        self.lbl_total_positive_accounts.setText(f"CUENTAS POSITIVAS: {total_positive_accounts}")
+        self.list_estadistica.clear()
+        for item in top_accounts:
+            self.list_estadistica.addItem(f"ALIAS: {item[1]}, CANT: {item[2]}")
 
     def connection(self):
         self.btn_back.clicked.connect(self.goBack)
@@ -74,16 +84,19 @@ class AccountWindow(QMainWindow,Ui_cuentasWindow):
             self.accountEdit = AccountEditWindow(self.logedUser, self, self.table_accounts.item(selectedRow,0).text())
             self.accountEdit.show()
         else:
-            print("error")
+            QMessageBox.warning(self, "Error", "Seleccione una fila!!")
+            return
 
     def delete(self):
         selectedRow = self.table_accounts.currentRow()
         if selectedRow >= 0:
             deletedID = int(self.table_accounts.item(selectedRow,0).text())
             AccountsDB().delete(deletedID)
+            self.showTable()
         else:
-            print("error")
-        self.showTable()
+            QMessageBox.warning(self, "Error", "Seleccione una fila!!")
+            return
+       
 
     def history(self):
         selectedRow = self.table_accounts.currentRow()
@@ -92,7 +105,8 @@ class AccountWindow(QMainWindow,Ui_cuentasWindow):
             self.accountEdit = HistoryWindow(self.logedUser, self, self.table_accounts.item(selectedRow,0).text())
             self.accountEdit.show()
         else:
-            print("error")
+            QMessageBox.warning(self, "Error", "Seleccione una fila!!")
+            return
 
 # CREATE USER WINDOW
 class AccountCreateWindow(QMainWindow,Ui_CuentasIterableWindow):
@@ -136,20 +150,33 @@ class AccountCreateWindow(QMainWindow,Ui_CuentasIterableWindow):
         client_id = self.slect_titular.itemData(client)
         
         if not cbu:
-            QMessageBox.warning(self, "Error", "Ingrese solo datos numericos")
+            QMessageBox.warning(self, "Error", "Rellene el campo CBU")
             return
+        if not cbu.isdigit():
+            QMessageBox.warning(self, "Error", "El cbu debe ser numerico")
+            return
+        if len(sql(f"SELECT * FROM accounts WHERE cbu = '{cbu}';")) != 0:
+            QMessageBox.warning(self, "Error", "El cbu ya existe!!")
+            return
+
         if not type:
             QMessageBox.warning(self, "Error", "Elija un tipo")
             return
+        
         if not alias:
             QMessageBox.warning(self, "Error", "Porfavor Rellene el Alias")
             return
+        if len(sql(f"SELECT * FROM accounts WHERE alias = '{alias}';")) != 0:
+            QMessageBox.warning(self, "Error", "El alias ya existe!!")
+            return
+
         if not balance:
+            QMessageBox.warning(self, "Error", "Rellene el campo Balance inicial")
+            return
+        if not balance.isdigit():
             QMessageBox.warning(self, "Error", "Porvavor ingrese solo datos numericos")
             return
-        if not client:
-            QMessageBox.warning(self, "Error", "Seleccione un titular")
-            return
+        
         
         AccountsDB().store(cbu, type, client_id, alias, balance)
 
@@ -213,18 +240,29 @@ class AccountEditWindow(QMainWindow,Ui_CuentasIterableWindow):
         client_id = self.slect_titular.itemData(client)
         
         if not cbu:
-            QMessageBox.warning(self, "Error", "Ingrese solo datos numericos")
+            QMessageBox.warning(self, "Error", "Rellene el campo CBU")
             return
+        if not cbu.isdigit():
+            QMessageBox.warning(self, "Error", "El CBU ser numerico")
+            return
+        validatecbu = sql(f"SELECT * FROM accounts WHERE cbu = '{cbu}';")
+        if len(validatecbu) != 0:
+            if list(validatecbu[0])[0] != self.updateID:
+                QMessageBox.warning(self, "Error", "El cbu ya esta en uso!!")
+                return    
+
         if not type:
             QMessageBox.warning(self, "Error", "Elija un tipo")
             return
+
         if not alias:
             QMessageBox.warning(self, "Error", "Porfavor Rellene el Alias")
             return
-
-        if not client:
-            QMessageBox.warning(self, "Error", "Seleccione un titular")
-            return
+        validatealias = sql(f"SELECT * FROM accounts WHERE alias = '{alias}';")
+        if len(validatealias) != 0:
+            if list(validatealias[0])[0] != self.updateID:
+                QMessageBox.warning(self, "Error", "El  alias ya en uso!!")
+                return
         
         
         AccountsDB().update(cbu, type, client_id, alias, self.updateID)

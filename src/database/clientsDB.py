@@ -99,7 +99,7 @@ class ClientsDB:
             client = list(item)
             
             count_transacctions = 0
-            accounts = sql(f"SELECT id FROM accounts WHERE client_id = {client[0]};")
+            accounts = sql(f"SELECT id FROM accounts WHERE client_id = {client[0]} AND status = 1 ;")
             for element in accounts:
                 account = list(element)[0]
                 transacctions = list(sql(f'''

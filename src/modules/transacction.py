@@ -90,7 +90,7 @@ class TransaccitionCreateWindow(QMainWindow,Ui_transaccionAltaWindow):
         self.fatherInstance.show()
 
     def uploadValues(self):
-        clients = sql("SELECT * FROM accounts;")
+        clients = sql("SELECT * FROM accounts WHERE status = 1;")
         for item in clients:
             listItem = list(item)
             self.slect_Egreso.addItem(f"{listItem[1]}")
