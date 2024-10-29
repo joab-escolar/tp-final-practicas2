@@ -1,6 +1,7 @@
 import sqlite3
 from utils.print import printGreen
 from utils.dateFunctions import getCurrentTime
+from utils.sqlRaw import sql
 
 class ClientsDB:
     def schema(self):
@@ -16,7 +17,7 @@ class ClientsDB:
                 birthdate TIMESTAMP NOT NULL,
                 direction TEXT NOT NULL CHECK(length(direction) <= 100),
                 phone TEXT NOT NULL CHECK(length(phone) <= 20),
-                status INTEGER NOT NULL,
+                status INTEGER NOT NULL DEFAULT 1,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             );
         ''')
@@ -90,5 +91,29 @@ class ClientsDB:
         db.close()
 
         return updateClient
+    
+    def topClients(self):
+        clients = sql("SELECT * FROM clients;")
+        top_clients = []
+        for item in clients:
+            client = list(item)
+            
+            count_transacctions = 0
+            accounts = sql(f"SELECT id FROM accounts WHERE client_id = {client[0]};")
+            for element in accounts:
+                account = list(element)[0]
+                transacctions = list(sql(f'''
+                    SELECT accounts.id, COUNT(histories.id) AS total_histories
+                    FROM accounts
+                    LEFT JOIN histories ON histories.account_id = accounts.id
+                    WHERE accounts.id = {account}
+                    GROUP BY accounts.id;
+                ''')[0])[1]
+                count_transacctions = count_transacctions + transacctions
+            top_clients.append([client[0], client[1], count_transacctions])
+        top_clients = sorted(top_clients, key=lambda x: x[2], reverse=True)
+        top_clients = top_clients[:5]
+        return top_clients
+
 
 

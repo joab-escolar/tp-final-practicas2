@@ -15,9 +15,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QHeaderView, QLabel, QListView,
-    QMainWindow, QMenuBar, QPushButton, QSizePolicy,
-    QStatusBar, QTableWidget, QTableWidgetItem, QWidget)
+from PySide6.QtWidgets import (QApplication, QHeaderView, QLabel, QListWidget,
+    QListWidgetItem, QMainWindow, QMenuBar, QPushButton,
+    QSizePolicy, QStatusBar, QTableWidget, QTableWidgetItem,
+    QWidget)
 
 class Ui_clienteWindow(object):
     def setupUi(self, clienteWindow):
@@ -53,9 +54,23 @@ class Ui_clienteWindow(object):
         self.table_clients = QTableWidget(self.centralwidget)
         self.table_clients.setObjectName(u"table_clients")
         self.table_clients.setGeometry(QRect(30, 130, 651, 601))
-        self.list_estadistica = QListView(self.centralwidget)
+        self.lbl_total_clients = QLabel(self.centralwidget)
+        self.lbl_total_clients.setObjectName(u"lbl_total_clients")
+        self.lbl_total_clients.setGeometry(QRect(700, 460, 251, 31))
+        font1 = QFont()
+        font1.setPointSize(13)
+        self.lbl_total_clients.setFont(font1)
+        self.lbl_total_active_clients = QLabel(self.centralwidget)
+        self.lbl_total_active_clients.setObjectName(u"lbl_total_active_clients")
+        self.lbl_total_active_clients.setGeometry(QRect(700, 500, 251, 31))
+        self.lbl_total_active_clients.setFont(font1)
+        self.lbl_total_inactive_clients = QLabel(self.centralwidget)
+        self.lbl_total_inactive_clients.setObjectName(u"lbl_total_inactive_clients")
+        self.lbl_total_inactive_clients.setGeometry(QRect(700, 540, 251, 31))
+        self.lbl_total_inactive_clients.setFont(font1)
+        self.list_estadistica = QListWidget(self.centralwidget)
         self.list_estadistica.setObjectName(u"list_estadistica")
-        self.list_estadistica.setGeometry(QRect(710, 130, 261, 601))
+        self.list_estadistica.setGeometry(QRect(700, 130, 261, 291))
         clienteWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(clienteWindow)
         self.menubar.setObjectName(u"menubar")
@@ -78,5 +93,8 @@ class Ui_clienteWindow(object):
         self.btn_back.setText(QCoreApplication.translate("clienteWindow", u"Atras", None))
         self.btn_edit.setText(QCoreApplication.translate("clienteWindow", u"Editar", None))
         self.btn_delete.setText(QCoreApplication.translate("clienteWindow", u"Eliminar", None))
+        self.lbl_total_clients.setText("")
+        self.lbl_total_active_clients.setText("")
+        self.lbl_total_inactive_clients.setText("")
     # retranslateUi
 

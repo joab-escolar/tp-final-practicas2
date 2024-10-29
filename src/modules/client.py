@@ -4,7 +4,7 @@ from PySide6.QtWidgets import QMainWindow, QTableWidget, QTableWidgetItem, QAbst
 from PySide6.QtCore import QDateTime 
 from view.cliente import Ui_clienteWindow
 from view.cliente_create import Ui_ClienteIterableWindow
-from utils.sqlRaw import sql
+from utils.sqlRaw import sql, sqlCount
 from database.clientsDB import ClientsDB
 
 # MAIN USER WINDOWS 
@@ -33,6 +33,7 @@ class ClientWindow(QMainWindow,Ui_clienteWindow):
         self.table_clients.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
 
     def showTable(self):
+        self.showStatistics()
         self.table_clients.setRowCount(0)
         clients = sql("SELECT * FROM clients;")
         for item in clients:
@@ -49,6 +50,17 @@ class ClientWindow(QMainWindow,Ui_clienteWindow):
             self.table_clients.setItem(row_position, 7, QTableWidgetItem(f"{client[7]}"))
             self.table_clients.setItem(row_position, 8, QTableWidgetItem(client[8]))
 
+    def showStatistics(self):
+        total_clients = sqlCount("SELECT COUNT(*) FROM clients;")[0]
+        total_active_clients = sqlCount("SELECT COUNT(*) FROM clients WHERE status = 1;")[0]
+        total_inactive_clients = sqlCount("SELECT COUNT(*) FROM clients WHERE status = 0;")[0]
+        top_clientes = ClientsDB().topClients()
+        self.lbl_total_clients.setText(f"TOTAL CLIENTES: {total_clients}")
+        self.lbl_total_active_clients.setText(f"CLIENTES ACTIVOS: {total_active_clients}")
+        self.lbl_total_inactive_clients.setText(f"CLIENTES INNACTIVOS: {total_inactive_clients}")
+        self.list_estadistica.clear()
+        for item in top_clientes:
+            self.list_estadistica.addItem(f"CLIENTE: {item[1]}, TRANS: {item[2]}")
 
     def connection(self):
         self.btn_back.clicked.connect(self.goBack)
@@ -72,16 +84,19 @@ class ClientWindow(QMainWindow,Ui_clienteWindow):
             self.clietEdit = UsersEditWindow(self.logedUser, self, self.table_clients.item(selectedRow,0).text())
             self.clietEdit.show()
         else:
-            print("error")
+            QMessageBox.warning(self, "Error", "Seleccione una fila!!")
+            return
 
     def delete(self):
         selectedRow = self.table_clients.currentRow()
         if selectedRow >= 0:
             deletedID = int(self.table_clients.item(selectedRow,0).text())
             ClientsDB().delete(deletedID)
+            self.showTable()
         else:
-            print("error")
-        self.showTable()
+            QMessageBox.warning(self, "Error", "Seleccione una fila!!")
+            return
+        
 
 # CREATE USER WINDOW
 class ClientCreateWindow(QMainWindow,Ui_ClienteIterableWindow):
@@ -120,6 +135,7 @@ class ClientCreateWindow(QMainWindow,Ui_ClienteIterableWindow):
         if not name:
             QMessageBox.warning(self, "Error", "Rellene el campo nombre")
             return
+
         if not lastname:
             QMessageBox.warning(self, "Error", "Rellene el campo apellido")
             return
@@ -128,8 +144,24 @@ class ClientCreateWindow(QMainWindow,Ui_ClienteIterableWindow):
             QMessageBox.warning(self, "Error", "DNI invalido, debe ser numerico y de 8 digitos")
             return
         
+        if not birthdate:
+            QMessageBox.warning(self, "Error", "Rellene el campo Fecha de nacimiento")
+            return
+        
+        if not direction:
+            QMessageBox.warning(self, "Error", "Rellene el campo Direccion")
+            return
+        
+        if not phone:
+            QMessageBox.warning(self, "Error", "Rellene el campo Telefono")
+            return
+        
         if not phone.isdigit():
             QMessageBox.warning(self, "Error", "El numero de telefono debe ser numerico")
+            return
+        
+        if not status:
+            QMessageBox.warning(self, "Error", "Seleccione estado")
             return
 
         newClient = ClientsDB().store(name, lastname, dni, birthdate, direction, phone, status)
@@ -193,6 +225,7 @@ class UsersEditWindow(QMainWindow,Ui_ClienteIterableWindow):
         if not name:
             QMessageBox.warning(self, "Error", "Rellene el campo nombre")
             return
+
         if not lastname:
             QMessageBox.warning(self, "Error", "Rellene el campo apellido")
             return
@@ -201,8 +234,24 @@ class UsersEditWindow(QMainWindow,Ui_ClienteIterableWindow):
             QMessageBox.warning(self, "Error", "DNI invalido, debe ser numerico y de 8 digitos")
             return
         
+        if not birthdate:
+            QMessageBox.warning(self, "Error", "Rellene el campo Fecha de nacimiento")
+            return
+        
+        if not direction:
+            QMessageBox.warning(self, "Error", "Rellene el campo Direccion")
+            return
+        
+        if not phone:
+            QMessageBox.warning(self, "Error", "Rellene el campo Telefono")
+            return
+        
         if not phone.isdigit():
             QMessageBox.warning(self, "Error", "El numero de telefono debe ser numerico")
+            return
+        
+        if not status:
+            QMessageBox.warning(self, "Error", "Seleccione estado")
             return
         
         ClientsDB().update(name, lastname, dni, birthdate, direction, phone, status, self.updateID)

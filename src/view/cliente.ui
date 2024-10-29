@@ -124,13 +124,67 @@
      </rect>
     </property>
    </widget>
-   <widget class="QListView" name="list_estadistica">
+   <widget class="QLabel" name="lbl_total_clients">
     <property name="geometry">
      <rect>
-      <x>710</x>
+      <x>700</x>
+      <y>460</y>
+      <width>251</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_total_active_clients">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>500</y>
+      <width>251</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_total_inactive_clients">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>540</y>
+      <width>251</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>13</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="list_estadistica">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
       <y>130</y>
       <width>261</width>
-      <height>601</height>
+      <height>291</height>
      </rect>
     </property>
    </widget>
