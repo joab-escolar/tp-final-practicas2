@@ -106,10 +106,29 @@ class TransaccitionCreateWindow(QMainWindow,Ui_transaccionAltaWindow):
         destination = self.slect_Ingreso.currentIndex()
         destination_id = self.slect_Egreso.itemData(destination)
 
-        if origin_id == destination_id:
-            QMessageBox.warning(self, "Error", "El campo de nombre de usuario está vacío.")
-            return
 
+        if origin_id == None:
+            QMessageBox.warning(self, "Error", "El origen no puede ser nulo")
+            return
+        
+        if destination_id == None:
+            QMessageBox.warning(self, "Error", "El destino no puede ser nulo")
+            return
+        
+        if origin_id == destination_id:
+            QMessageBox.warning(self, "Error", "El origen no puede ser el destino")
+            return
+        
+        if not balance:
+            QMessageBox.warning(self, "Error", "Por favor rellene el balance")
+            return
+                
+        if not balance.isdigit():
+            QMessageBox.warning(self, "Error", "El balance debe ser un numero y no negativo")
+            return
+        
+        
+        
         TransacctionsDB().store(impact_date, origin_id, destination_id, balance)
         transaccions  = list(sql(f"SELECT * FROM transacctions ORDER BY id DESC LIMIT 1;")[0])
         print(transaccions)
