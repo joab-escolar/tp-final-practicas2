@@ -17,6 +17,10 @@ class LoginWindow(QMainWindow,Ui_LoginWindow):
         self.hidden()
         self.connection()
     
+    def startDB(self):
+        db = DataBase()
+        db.migrate()
+    
     def hidden(self):
         self.input_password.setEchoMode(QLineEdit.Password)
         self.input_password.setPlaceholderText("Ingresa tu contraseña")
@@ -29,8 +33,8 @@ class LoginWindow(QMainWindow,Ui_LoginWindow):
         password = self.input_password.text()
 
         # #debug
-        username = 'admin'
-        password = 'admin'
+        # username = 'admin'
+        # password = 'admin'
 
         login = Login()
         logedUser = login.login(username, password)
@@ -40,14 +44,14 @@ class LoginWindow(QMainWindow,Ui_LoginWindow):
 
         if logedUser != False:
             self.close()
-            self.menu = MenuWindow(logedUser)
+            self.menu = MenuWindow(logedUser,self)
             self.menu.show()
         else:
             self.lbl_error.setText("credenciales incorrectas!")
 
-    def startDB(self):
-        db = DataBase()
-        db.migrate()
+    def clearIntputs(self):
+        self.input_username.setText("")
+        self.input_password.setText("")
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

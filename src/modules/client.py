@@ -7,7 +7,6 @@ from view.cliente_create import Ui_ClienteIterableWindow
 from utils.sqlRaw import sql, sqlCount
 from database.clientsDB import ClientsDB
 
-# MAIN USER WINDOWS 
 class ClientWindow(QMainWindow,Ui_clienteWindow):
     def __init__(self, logedUser, fatherInstance):
         super().__init__()
@@ -24,7 +23,7 @@ class ClientWindow(QMainWindow,Ui_clienteWindow):
         self.connection()
 
     def setUser(self):
-        self.lbl_show_user.setText(f"({self.user[6]}) {self.user[2]}")
+        self.lbl_show_user.setText(f"({self.user[6]}) {self.user[1]}")
 
     def loadTable(self):
         self.table_clients.setColumnCount(9)
@@ -97,8 +96,6 @@ class ClientWindow(QMainWindow,Ui_clienteWindow):
             QMessageBox.warning(self, "Error", "Seleccione una fila!!")
             return
         
-
-# CREATE USER WINDOW
 class ClientCreateWindow(QMainWindow,Ui_ClienteIterableWindow):
     def __init__(self, logedUser, fatherInstance):
         super().__init__()
@@ -113,7 +110,7 @@ class ClientCreateWindow(QMainWindow,Ui_ClienteIterableWindow):
         self.connection()
         
     def setUser(self):
-        self.lbl_show_user.setText(f"({self.user[6]}) {self.user[2]}")
+        self.lbl_show_user.setText(f"({self.user[6]}) {self.user[1]}")
 
     def connection(self):
         self.btn_back.clicked.connect(self.goBack)
@@ -169,8 +166,6 @@ class ClientCreateWindow(QMainWindow,Ui_ClienteIterableWindow):
         self.fatherInstance.showTable()
         self.goBack()
 
-
-
 class UsersEditWindow(QMainWindow,Ui_ClienteIterableWindow):
     def __init__(self, logedUser, fatherInstance, ID):
         super().__init__()
@@ -187,7 +182,7 @@ class UsersEditWindow(QMainWindow,Ui_ClienteIterableWindow):
         self.connection()
         
     def setUser(self):
-        self.lbl_show_user.setText(f"({self.user[6]}) {self.user[2]}")
+        self.lbl_show_user.setText(f"({self.user[6]}) {self.user[1]}")
     
     def loadValues(self):
         updateClient = list(sql(f"SELECT * FROM clients WHERE id = {self.updateID};")[0])

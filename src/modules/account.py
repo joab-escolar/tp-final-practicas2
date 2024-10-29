@@ -8,7 +8,6 @@ from view.cuentas_info import Ui_cuentasInfoWindow
 from utils.sqlRaw import sql, sqlCount
 from database.accountsDB import AccountsDB
 
-# MAIN USER WINDOWS 
 class AccountWindow(QMainWindow,Ui_cuentasWindow):
     def __init__(self, logedUser, fatherInstance):
         super().__init__()
@@ -25,7 +24,7 @@ class AccountWindow(QMainWindow,Ui_cuentasWindow):
         self.connection()
 
     def setUser(self):
-        self.lbl_show_user.setText(f"({self.user[6]}) {self.user[2]}")
+        self.lbl_show_user.setText(f"({self.user[6]}) {self.user[1]}")
 
     def loadTable(self):
         self.table_accounts.setColumnCount(8)
@@ -108,7 +107,6 @@ class AccountWindow(QMainWindow,Ui_cuentasWindow):
             QMessageBox.warning(self, "Error", "Seleccione una fila!!")
             return
 
-# CREATE USER WINDOW
 class AccountCreateWindow(QMainWindow,Ui_CuentasIterableWindow):
     def __init__(self, logedUser, fatherInstance):
         super().__init__()
@@ -124,7 +122,7 @@ class AccountCreateWindow(QMainWindow,Ui_CuentasIterableWindow):
         self.connection()
         
     def setUser(self):
-        self.lbl_show_user.setText(f"({self.user[6]}) {self.user[2]}")
+        self.lbl_show_user.setText(f"({self.user[6]}) {self.user[1]}")
 
     def connection(self):
         self.btn_back.clicked.connect(self.goBack)
@@ -183,8 +181,6 @@ class AccountCreateWindow(QMainWindow,Ui_CuentasIterableWindow):
         self.fatherInstance.showTable()
         self.goBack()
 
-
-
 class AccountEditWindow(QMainWindow,Ui_CuentasIterableWindow):
     def __init__(self, logedUser, fatherInstance, ID):
         super().__init__()
@@ -202,7 +198,7 @@ class AccountEditWindow(QMainWindow,Ui_CuentasIterableWindow):
         self.connection()
         
     def setUser(self):
-        self.lbl_show_user.setText(f"({self.user[6]}) {self.user[2]}")
+        self.lbl_show_user.setText(f"({self.user[6]}) {self.user[1]}")
     
     def uploadValues(self):
         clients = sql("SELECT * FROM clients;")
@@ -269,9 +265,7 @@ class AccountEditWindow(QMainWindow,Ui_CuentasIterableWindow):
 
         self.fatherInstance.showTable()
         self.goBack()
-
-
-        
+     
 class HistoryWindow(QMainWindow,Ui_cuentasInfoWindow):
     def __init__(self, logedUser, fatherInstance, ID):
         super().__init__()
@@ -289,7 +283,7 @@ class HistoryWindow(QMainWindow,Ui_cuentasInfoWindow):
         self.connection()
         
     def setUser(self):
-        self.lbl_show_user.setText(f"({self.user[6]}) {self.user[2]}")
+        self.lbl_show_user.setText(f"({self.user[6]}) {self.user[1]}")
     
     
     def connection(self):

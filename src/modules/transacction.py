@@ -8,7 +8,6 @@ from utils.sqlRaw import sql
 from database.transacctionsDB import TransacctionsDB
 from database.historyDB import HistoryDB
 
-# MAIN USER WINDOWS 
 class TransacctionWindow(QMainWindow,Ui_transanccionWindow):
     def __init__(self, logedUser, fatherInstance):
         super().__init__()
@@ -25,7 +24,7 @@ class TransacctionWindow(QMainWindow,Ui_transanccionWindow):
         self.connection()
 
     def setUser(self):
-        self.lbl_show_user.setText(f"({self.user[6]}) {self.user[2]}")
+        self.lbl_show_user.setText(f"({self.user[6]}) {self.user[1]}")
 
     def loadTable(self):
         self.table_transacctions.setColumnCount(6)
@@ -63,7 +62,6 @@ class TransacctionWindow(QMainWindow,Ui_transanccionWindow):
         self.clientCreate = TransaccitionCreateWindow(self.logedUser, self)
         self.clientCreate.show()
 
-
 class TransaccitionCreateWindow(QMainWindow,Ui_transaccionAltaWindow):
     def __init__(self, logedUser, fatherInstance):
         super().__init__()
@@ -79,7 +77,7 @@ class TransaccitionCreateWindow(QMainWindow,Ui_transaccionAltaWindow):
         self.connection()
         
     def setUser(self):
-        self.lbl_show_user.setText(f"({self.user[6]}) {self.user[2]}")
+        self.lbl_show_user.setText(f"({self.user[6]}) {self.user[1]}")
 
     def connection(self):
         self.btn_back.clicked.connect(self.goBack)

@@ -9,10 +9,11 @@ from modules.transacction import TransacctionWindow
 
 
 class MenuWindow(QMainWindow,Ui_menuWindow):
-    def __init__(self, logedUser):
+    def __init__(self, logedUser, fatherInstance):
         super().__init__()
         self.logedUser = logedUser
         self.user = list(logedUser[0])
+        self.fatherInstance = fatherInstance
         self.setupUi(self)
         self.handlerMenu()
 
@@ -23,7 +24,7 @@ class MenuWindow(QMainWindow,Ui_menuWindow):
     def setUser(self):
         if self.user[6] != "ADMINISTRADOR":
             self.btn_users.hide()
-        self.lbl_show_user.setText(f"({self.user[6]}) {self.user[2]}")
+        self.lbl_show_user.setText(f"({self.user[6]}) {self.user[1]}")
 
     def connection(self):
         self.btn_users.clicked.connect(self.users_menu)
@@ -53,7 +54,9 @@ class MenuWindow(QMainWindow,Ui_menuWindow):
         self.account.show()  
 
     def quit(self):
-        sys.exit()
+        self.close()
+        self.fatherInstance.clearIntputs()
+        self.fatherInstance.show()
 
 
     

@@ -7,7 +7,6 @@ from view.user_create import Ui_usersIterableWindow
 from utils.sqlRaw import sql
 from database.UsersDB import UsersDB
 
-# MAIN USER WINDOWS 
 class UsersWindow(QMainWindow,Ui_usersWindow):
     def __init__(self, logedUser, fatherInstance):
         super().__init__()
@@ -24,7 +23,7 @@ class UsersWindow(QMainWindow,Ui_usersWindow):
         self.connection()
 
     def setUser(self):
-        self.lbl_show_user.setText(f"({self.user[6]}) {self.user[2]}")
+        self.lbl_show_user.setText(f"({self.user[6]}) {self.user[1]}")
 
     def loadTable(self):
         self.table_user.setColumnCount(5)
@@ -85,7 +84,7 @@ class UsersWindow(QMainWindow,Ui_usersWindow):
             QMessageBox.warning(self, "Error", "Seleccione una fila!!")
             return
 
-# CREATE USER WINDOW
+
 class UsersCreateWindow(QMainWindow,Ui_usersIterableWindow):
     def __init__(self, logedUser, fatherInstance):
         super().__init__()
@@ -102,7 +101,7 @@ class UsersCreateWindow(QMainWindow,Ui_usersIterableWindow):
         self.connection()
         
     def setUser(self):
-        self.lbl_show_user.setText(f"({self.user[6]}) {self.user[2]}")
+        self.lbl_show_user.setText(f"({self.user[6]}) {self.user[1]}")
 
     def mapRoles(self):
         roles = sql("SELECT * FROM roles;")
@@ -167,7 +166,7 @@ class UsersEditWindow(QMainWindow,Ui_usersIterableWindow):
         self.connection()
         
     def setUser(self):
-        self.lbl_show_user.setText(f"({self.user[6]}) {self.user[2]}")
+        self.lbl_show_user.setText(f"({self.user[6]}) {self.user[1]}")
 
     def mapRoles(self):
         roles = sql("SELECT * FROM roles;")
