@@ -127,7 +127,7 @@ class TransaccitionCreateWindow(QMainWindow,Ui_transaccionAltaWindow):
         
         
         
-        TransacctionsDB().store(impact_date, origin_id, destination_id, balance)
+        TransacctionsDB().store(impact_date, origin_id, destination_id, float(balance))
         transaccions  = list(sql(f"SELECT * FROM transacctions ORDER BY id DESC LIMIT 1;")[0])
         print(transaccions)
 
