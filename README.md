@@ -36,3 +36,10 @@ py -m venv venv
 pip install -r requirements.txt
 ```
 
+
+## EXTRAS
+
+1. Link de repo
+```
+https://github.com/joab-escolar/tp-final-practicas2
+```
